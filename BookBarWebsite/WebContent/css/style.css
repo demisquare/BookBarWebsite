@@ -1,3 +1,17 @@
+#main {
+	margin-top: 100px;
+}
+
 .red {
-  color: red;
+  color: green;
+}
+
+.footer {
+	height: 60px;
+	width: 100%;
+	color: whitesmoke;
+}
+
+.logo{
+	width: 60px;
 }

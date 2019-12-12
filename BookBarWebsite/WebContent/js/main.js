@@ -1,5 +1,5 @@
 let a = document.querySelector("h1");
-let btn = document.querySelector("button");
+let btn = document.querySelector(".toggleRed");
 let red = false;
 let handleClick = () => {
 	if (red) {

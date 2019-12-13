@@ -147,6 +147,7 @@
       </button>
       
       <h1>CONTENUTO</h1>
+      <%@include file="component/abc.jsp" %>
       
     </div>
 		<div class="fixed-bottom bg-dark footer">

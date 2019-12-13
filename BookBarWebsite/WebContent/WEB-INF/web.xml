@@ -1,0 +1,12 @@
+<web-app>
+    <servlet>
+        <servlet-name>prova</servlet-name>
+        <servlet-class>it.unical.siw.bookbar.Test</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>prova</servlet-name>
+        <url-pattern>/prova</url-pattern>
+    </servlet-mapping>
+
+</web-app>  

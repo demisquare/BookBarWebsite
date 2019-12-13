@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>BookBar</title>
+    <title>Book Bar</title>
 
     <link
       rel="apple-touch-icon"
@@ -91,70 +91,14 @@
     <link rel="stylesheet" href="css/style.css" rel="no-referrer" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-			<div class="container">
-				<a class="navbar-brand" href="#"><img src="./img/coffee-cup.png" alt="BookBar Logo" class="logo"></a>
-				<button
-					class="navbar-toggler"
-					type="button"
-					data-toggle="collapse"
-					data-target="#navbarNavDropdown"
-					aria-controls="navbarNavDropdown"
-					aria-expanded="false"
-					aria-label="Toggle navigation"
-				>
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNavDropdown">
-					<ul class="navbar-nav">
-						<li class="nav-item active">
-							<a class="nav-link" href="#"
-								>Home <span class="sr-only">(current)</span></a
-							>
-						</li> 
-						<li class="nav-item">
-							<a class="nav-link" href="#">Features</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Pricing</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a
-								class="nav-link dropdown-toggle"
-								href="#"
-								id="navbarDropdownMenuLink"
-								data-toggle="dropdown"
-								aria-haspopup="true"
-								aria-expanded="false"
-							>
-								Dropdown link
-							</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-								<a class="dropdown-item" href="#">Action</a>
-								<a class="dropdown-item" href="#">Another action</a>
-								<a class="dropdown-item" href="#">Something else here</a>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-    </nav>
-
-    <div class="container" id="main">
-      <h1>Test</h1>
-      <button type="button" class="btn btn-primary toggleRed">
-        <i class="far fa-thumbs-up fa-3x"></i>Clicca
-      </button>
+  	<!-- header bar -->
+	<%@include file="component/header.jsp" %>
+	
+	<!-- container -->
+    <%@include file="component/container.jsp" %>
       
-      <h1>CONTENUTO</h1>
-      <%@include file="component/abc.jsp" %>
-      
-    </div>
-		<div class="fixed-bottom bg-dark footer">
-			<div class="container">
-				Footer
-			</div>
-		</div>
+    <!-- footer bar -->
+	<%@include file="component/footer.jsp" %>
 
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

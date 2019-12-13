@@ -7,9 +7,6 @@
 
   <table border="0" cellpadding="10">
     <tr>
-      <td align=center>
-        <img src="images/Pivotal_Logo.png">
-      </td>
       <td>
          <h1>Sample Application JSP Page</h1>
       </td>
@@ -21,5 +18,7 @@
 
   <%= new String("TEST JSP") %>
 
+	<%Integer name = (Integer)request.getAttribute("pippo"); %>
+	<%= name %>
   </body>
 </html> 

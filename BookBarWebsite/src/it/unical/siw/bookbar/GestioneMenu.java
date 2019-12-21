@@ -12,7 +12,7 @@ public final class GestioneMenu extends HttpServlet {
                       HttpServletResponse res)
       throws IOException, ServletException {
     	
-
+    	
         req.setAttribute("menu", "Esempio");
         req.getRequestDispatcher("GestioneMenu.jsp").forward(req, res);	
     }

@@ -1,22 +1,33 @@
 <web-app>
-    <servlet>
-        <servlet-name>GestioneUtenti</servlet-name>
-        <servlet-class>it.unical.siw.bookbar.GestioneUtenti</servlet-class>
-    </servlet>
+	<servlet>
+		<servlet-name>GestioneUtenti</servlet-name>
+		<servlet-class>it.unical.siw.bookbar.GestioneUtenti</servlet-class>
+	</servlet>
 
-    <servlet-mapping>
-        <servlet-name>GestioneUtenti</servlet-name>
-        <url-pattern>/gestione_utenti</url-pattern>
-    </servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GestioneUtenti</servlet-name>
+		<url-pattern>/gestione_utenti</url-pattern>
+	</servlet-mapping>
 
-    <servlet>
-        <servlet-name>GestioneMenu</servlet-name>
-        <servlet-class>it.unical.siw.bookbar.GestioneMenu</servlet-class>
-    </servlet>
+	<servlet>
+		<servlet-name>GestioneMenu</servlet-name>
+		<servlet-class>it.unical.siw.bookbar.GestioneMenu</servlet-class>
+	</servlet>
 
-    <servlet-mapping>
-        <servlet-name>GestioneMenu</servlet-name>
-        <url-pattern>/gestione_menu</url-pattern>
-    </servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GestioneMenu</servlet-name>
+		<url-pattern>/gestione_menu</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>GestioneOrdini</servlet-name>
+		<servlet-class>it.unical.siw.bookbar.GestioneOrdini</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>GestioneOrdini</servlet-name>
+		<url-pattern>/gestione_ordini</url-pattern>
+	</servlet-mapping>
+
 
 </web-app>  

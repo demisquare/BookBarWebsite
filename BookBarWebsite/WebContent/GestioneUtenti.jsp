@@ -1,7 +1,7 @@
 <!-- header bar -->
 <%@include file="component/header.jsp"%>
 
-<h1>Gestione Utenti</h1>
+<h1>Utenti</h1>
 <button type="button" class="btn btn-success adminAddBtn"
 	data-toggle="modal" data-target="#exampleModalCenter">Aggiungi
 	un utente</button>

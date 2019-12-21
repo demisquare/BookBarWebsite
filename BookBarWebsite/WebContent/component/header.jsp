@@ -70,7 +70,7 @@
 								href="http://localhost:8080/BookBarWebsite/gestione_utenti">Utenti</a>
 							<a class="dropdown-item"
 								href="http://localhost:8080/BookBarWebsite/gestione_menu">Prodotti
-								e menu</a> <a class="dropdown-item" href="#">Something else here</a>
+								e menu</a> <a class="dropdown-item" href="http://localhost:8080/BookBarWebsite/gestione_ordini">Ordini</a>
 						</div></li>
 				</ul>
 			</div>

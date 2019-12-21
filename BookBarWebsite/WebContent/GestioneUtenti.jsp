@@ -6,10 +6,6 @@
 	data-toggle="modal" data-target="#exampleModalCenter">Aggiungi
 	un utente</button>
 
-
-
-
-
 <table class="table table-hover">
 	<thead>
 		<tr>
@@ -87,11 +83,13 @@
 			  "data": {}
 			}
 	let addUserHandler = () => {
+		let data = {}
+		data.operation="add";
+		data.email=document.querySelector("input[type='email']").value;
+		data.password=document.querySelector("input[type='password']").value;
+		data.isAdmin=document.querySelector("#admin").checked;
 		
-		settings.data.operation="add";
-		settings.data.email=document.querySelector("input[type='email']").value;
-		settings.data.password=document.querySelector("input[type='password']").value;
-		settings.data.isAdmin=document.querySelector("#admin").checked;
+		settings.data = data;
 		
 		console.log(settings.data);
 		$.ajax(settings).done(function (response) {
@@ -99,10 +97,12 @@
 			});
 	}
 	let delUserHandler = (id) => {
-		console.log("Vuoi eliminare l'utente "
-				+ id);
-		settings.data.operation="del";
-		settings.data.id=id;
+		console.log("Vuoi eliminare l'utente " + id);
+		let data = {}
+		data.operation="del";
+		data.id=id;
+		
+		settings.data = data;
 		
 		$.ajax(settings).done(function (response) {
 			  console.log(response);

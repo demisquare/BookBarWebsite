@@ -1,12 +1,22 @@
 <web-app>
     <servlet>
-        <servlet-name>prova</servlet-name>
-        <servlet-class>it.unical.siw.bookbar.Test</servlet-class>
+        <servlet-name>GestioneUtenti</servlet-name>
+        <servlet-class>it.unical.siw.bookbar.GestioneUtenti</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>prova</servlet-name>
-        <url-pattern>/prova</url-pattern>
+        <servlet-name>GestioneUtenti</servlet-name>
+        <url-pattern>/gestione_utenti</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GestioneMenu</servlet-name>
+        <servlet-class>it.unical.siw.bookbar.GestioneMenu</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GestioneMenu</servlet-name>
+        <url-pattern>/gestione_menu</url-pattern>
     </servlet-mapping>
 
 </web-app>  

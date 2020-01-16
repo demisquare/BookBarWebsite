@@ -1,4 +1,4 @@
-package it.unical.siw.bookbar;
+package model;
 
 public class Ordine {
 	private String stato;

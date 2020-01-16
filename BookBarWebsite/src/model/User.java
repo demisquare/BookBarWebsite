@@ -1,4 +1,4 @@
-package it.unical.siw.bookbar;
+package model;
 
 public class User {
 	private String username;

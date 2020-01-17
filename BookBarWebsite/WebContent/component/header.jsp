@@ -59,7 +59,7 @@
 						href="http://localhost:8080/BookBarWebsite/">Home <span
 							class="sr-only">(current)</span></a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Menu</a></li>
-					<li class="nav-item"><a class="nav-link" href="http://localhost:8080/BookBarWebsite/login.jsp">Login</a></li>
+					<li class="nav-item"><a class="nav-link" href="http://localhost:8080/BookBarWebsite/login">Login</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -67,10 +67,10 @@
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item"
-								href="http://localhost:8080/BookBarWebsite/GestioneUtenti.jsp">Utenti</a>
+								href="http://localhost:8080/BookBarWebsite/gestione_utenti">Utenti</a>
 							<a class="dropdown-item"
-								href="http://localhost:8080/BookBarWebsite/GestioneMenu.jsp">Prodotti
-								e menu</a> <a class="dropdown-item" href="http://localhost:8080/BookBarWebsite/GestioneOrdini.jsp">Ordini</a>
+								href="http://localhost:8080/BookBarWebsite/gestione_menu">Prodotti
+								e menu</a> <a class="dropdown-item" href="http://localhost:8080/BookBarWebsite/gestione_ordini">Ordini</a>
 						</div></li>
 				</ul>
 			</div>

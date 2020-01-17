@@ -37,12 +37,26 @@ public class DBManager {
 	private DBManager() {
 	}
 
+	
+	
+	// UTENTI // 
+	public Utente findUserByPrimaryKey(int subject) {
+		return getUtenteDAO().findByPrimaryKey(subject);
+	}
 	public int getCountAllUsers() {
 		return 1000;
 	}
-
+	
 	public List<Utente> getAllUsers() {
 		return getUtenteDAO().findAll();
+	}
+	
+	public void addUser(Utente utente) {
+		getUtenteDAO().save(utente);
+	}
+	
+	public void deleteUser(Utente utente) {
+		getUtenteDAO().delete(utente);
 	}
 
 	public UtenteDAO getUtenteDAO() {

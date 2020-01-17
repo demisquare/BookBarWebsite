@@ -15,13 +15,14 @@ public final class GestioneOrdini extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 
 		// placeholder da eliminare
-		// public Ordine(String stato, int id, String data, String username, String menu) {
+		// public Ordine(String stato, int id, String data, String username, String
+		// menu) {
 		ArrayList<Ordine> orders = new ArrayList<Ordine>();
 		orders.add(new Ordine("Nuovo", 0, "21 dic 2019 21:53", "user 01", "Menu 02"));
 		orders.add(new Ordine("Nuovo", 1, "21 dic 2019 21:47", "user 02", "Menu 01"));
 		orders.add(new Ordine("Nuovo", 2, "21 dic 2019 21:23", "user 00", "Menu 01"));
-		// ========== 
-		
+		// ==========
+
 		req.setAttribute("orders", orders);
 		req.getRequestDispatcher("GestioneOrdini.jsp").forward(req, res);
 	}
@@ -29,7 +30,7 @@ public final class GestioneOrdini extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		String operation = req.getParameter("operation");
 		int id = Integer.parseInt(req.getParameter("id"));
-		
+
 		switch (operation) {
 		case "lavorazione":
 			// flag "workingon" nel database (update)

@@ -8,7 +8,7 @@ public interface UtenteDAO {
 
 	public void save(Utente utente); // Create
 
-	public Utente findByPrimaryKey(String username); // Retrieve
+	public Utente findByPrimaryKey(int subject); // Retrieve
 
 	public List<Utente> findAll();
 

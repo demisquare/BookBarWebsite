@@ -105,6 +105,7 @@
 		settings.data = data;
 		
 		$.ajax(settings).done(function (response) {
+				
 			  console.log(response);
 			});
 	}

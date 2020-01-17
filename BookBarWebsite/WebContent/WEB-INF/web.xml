@@ -11,57 +11,39 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  
   	<servlet>
 		<servlet-name>testConnessioneDB</servlet-name>
 		<servlet-class>controller.testConnessioneDB</servlet-class>
+	</servlet>  
+	<servlet>
+		<servlet-name>GestioneUtenti</servlet-name>
+		<servlet-class>controller.GestioneUtenti</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>GestioneMenu</servlet-name>
+		<servlet-class>controller.GestioneMenu</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>GestioneOrdini</servlet-name>
+		<servlet-class>controller.GestioneOrdini</servlet-class>
+	</servlet>
+
 
 	<servlet-mapping>
 		<servlet-name>testConnessioneDB</servlet-name>
 		<url-pattern>/testConnessioneDB</url-pattern>
 	</servlet-mapping>
-  
-  
-<!-- 	<servlet>
-		<servlet-name>GestioneUtenti</servlet-name>
-		<servlet-class>it.unical.siw.bookbar.GestioneUtenti</servlet-class>
-	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>GestioneUtenti</servlet-name>
 		<url-pattern>/gestione_utenti</url-pattern>
 	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>GestioneMenu</servlet-name>
-		<servlet-class>it.unical.siw.bookbar.GestioneMenu</servlet-class>
-	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>GestioneMenu</servlet-name>
 		<url-pattern>/gestione_menu</url-pattern>
 	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>GestioneOrdini</servlet-name>
-		<servlet-class>it.unical.siw.bookbar.GestioneOrdini</servlet-class>
-	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>GestioneOrdini</servlet-name>
 		<url-pattern>/gestione_ordini</url-pattern>
-	</servlet-mapping> -->
-
-
-<!-- 	<servlet>
-		<servlet-name>GestioneUtenti</servlet-name>
-		<servlet-class>it.unical.siw.bookbar.GestioneUtenti</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>GestioneUtenti</servlet-name>
-		<url-pattern>/gestione_utenti</url-pattern>
-	</servlet-mapping> -->
+	</servlet-mapping>
 
 </web-app>  

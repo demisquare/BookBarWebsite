@@ -8,12 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
 public final class GestioneMenu extends HttpServlet {
-    public void doGet(HttpServletRequest req,
-                      HttpServletResponse res)
-      throws IOException, ServletException {
-    	
-    	
-        req.setAttribute("menu", "Esempio");
-        req.getRequestDispatcher("GestioneMenu.jsp").forward(req, res);	
-    }
-} 
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+
+		req.setAttribute("menu", "Esempio");
+		req.getRequestDispatcher("GestioneMenu.jsp").forward(req, res);
+	}
+}

@@ -6,7 +6,7 @@ public class Ordine {
 	private String data;
 	private String username;
 	private String menu;
-	
+
 	public Ordine(String stato, int id, String data, String username, String menu) {
 		this.stato = stato;
 		this.id = id;
@@ -18,7 +18,7 @@ public class Ordine {
 	public String getUsername() {
 		return username;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -35,5 +35,4 @@ public class Ordine {
 		return menu;
 	}
 
-	
 }

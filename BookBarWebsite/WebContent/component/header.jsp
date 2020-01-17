@@ -59,7 +59,7 @@
 						href="http://localhost:8080/BookBarWebsite/">Home <span
 							class="sr-only">(current)</span></a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Menu</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+					<li class="nav-item"><a class="nav-link" href="http://localhost:8080/BookBarWebsite/login.jsp">Login</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownMenuLink" data-toggle="dropdown"

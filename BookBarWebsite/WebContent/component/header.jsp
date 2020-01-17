@@ -67,10 +67,10 @@
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item"
-								href="http://localhost:8080/BookBarWebsite/gestione_utenti">Utenti</a>
+								href="http://localhost:8080/BookBarWebsite/GestioneUtenti.jsp">Utenti</a>
 							<a class="dropdown-item"
-								href="http://localhost:8080/BookBarWebsite/gestione_menu">Prodotti
-								e menu</a> <a class="dropdown-item" href="http://localhost:8080/BookBarWebsite/gestione_ordini">Ordini</a>
+								href="http://localhost:8080/BookBarWebsite/GestioneMenu.jsp">Prodotti
+								e menu</a> <a class="dropdown-item" href="http://localhost:8080/BookBarWebsite/GestioneOrdini.jsp">Ordini</a>
 						</div></li>
 				</ul>
 			</div>

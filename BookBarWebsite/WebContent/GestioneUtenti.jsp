@@ -16,9 +16,9 @@
 			<th scope="col"></th>
 		</tr>
 	</thead>
-	<tbody>
+	<tbody class="user-table">
 
-		<c:forEach items="${users}" var="user" varStatus="loop">
+		<!-- <c:forEach items="${users}" var="user" varStatus="loop">
 			<tr class="userRow">
 				<th scope="row"><c:out value="${loop.index}"></c:out></th>
 				<td><c:out value="${user.getId()}"></c:out></td>
@@ -28,11 +28,11 @@
 					data-id="<c:out value="${user.getId()}"></c:out>"><i
 					class="fas fa-trash-alt"></i></td>
 			</tr>
-		</c:forEach>
+		</c:forEach> -->
 
 	</tbody>
 </table>
-
+<div id="jsonResult"></div>
 <div class="modal fade" id="exampleModalCenter" tabindex="-1"
 	role="dialog" aria-labelledby="exampleModalCenterTitle"
 	aria-hidden="true">
@@ -69,8 +69,47 @@
 		</div>
 	</div>
 </div>
+<!-- footer bar -->
+<%@include file="component/footer.jsp"%>
 
 <script>
+	let getUserList = () => {
+		$.ajax({
+			  "async": true,
+			  "crossDomain": true,
+			  "url": "http://localhost:8080/BookBarWebsite/api/utenti",
+			  "method": "GET",
+			  "headers": {
+			    "Content-Type": "application/json",
+			    "Accept": "*/*",
+			  },
+			  "data": {}
+			}).done(function (response) {
+				let data = JSON.parse(JSON.stringify(response));
+
+				console.log("Data",data);
+				let html = '';
+				let k = 0;
+				for (let row in data) {
+					let singleRowHTML = '<tr class="userRow"><th scope="row">' + k + '</th><td>' + data[row].id + '</td><td>' + data[row].username + '</td><td>' + data[row].role + '</td><td class="userDeleteBtn" data-id="'+data[row].id+'"><i class="fas fa-trash-alt deleteIcon"></i></td></tr>';
+					html += singleRowHTML;
+					k++;
+				}
+				document.querySelector(".user-table").innerHTML = html;
+
+
+				let userAddBtn = document.querySelector(".salvaUtente");
+	userAddBtn.addEventListener("click", addUserHandler);
+	let userDeleteBtn = document.querySelectorAll(".userDeleteBtn");
+	for (let i = 0; i < userDeleteBtn.length; i++) {
+		userDeleteBtn[i].addEventListener("click", function() {
+			console.log(userDeleteBtn[i].dataset.id);
+			delUserHandler(userDeleteBtn[i].dataset.id);
+		});
+	}
+			});
+	}
+
 	let settings = {
 			  "async": true,
 			  "crossDomain": true,
@@ -83,6 +122,7 @@
 			  "data": {}
 			}
 	let addUserHandler = () => {
+		$("#exampleModalCenter").modal('hide')
 		let data = {}
 		data.operation="add";
 		data.email=document.querySelector("input[type='email']").value;
@@ -93,7 +133,7 @@
 		
 		console.log(settings.data);
 		$.ajax(settings).done(function (response) {
-			  console.log(response);
+				getUserList();
 			});
 	}
 	let delUserHandler = (id) => {
@@ -101,23 +141,15 @@
 		let data = {}
 		data.operation="del";
 		data.id=id;
-		
 		settings.data = data;
-		
 		$.ajax(settings).done(function (response) {
-				
-			  console.log(response);
-			});
-	}
-	let userAddBtn = document.querySelector(".salvaUtente");
-	userAddBtn.addEventListener("click", addUserHandler);
-	let userDeleteBtn = document.querySelectorAll(".userDeleteBtn");
-	for (let i = 0; i < userDeleteBtn.length; i++) {
-		userDeleteBtn[i].addEventListener("click", function() {
-			delUserHandler(userDeleteBtn[i].dataset.id);
+				getUserList();
 		});
 	}
+	
+	$(document).ready(function() {
+		getUserList();
+  });
 </script>
-
-<!-- footer bar -->
-<%@include file="component/footer.jsp"%>
+</body>
+</html>

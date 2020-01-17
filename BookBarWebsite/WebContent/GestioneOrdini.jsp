@@ -26,9 +26,15 @@
 				<td><c:out value="${order.getData()}"></c:out></td>
 				<td><c:out value="${order.getUsername()}"></c:out></td>
 				<td><c:out value="${order.getMenu()}"></c:out></td>
-				<td class="inLavorazioneBtn" data-id="<c:out value="${order.getId()}"></c:out>"><i class="fas fa-tools"></i></td>
-				<td class="consegnaBtn" data-id="<c:out value="${order.getId()}"></c:out>"><i class="fas fa-check-square consegna"></i></td>
-				<td class="deleteBtn" data-id="<c:out value="${order.getId()}"></c:out>"><i class="fas fa-trash-alt"></i></td>
+				<td class="inLavorazioneBtn"
+					data-id="<c:out value="${order.getId()}"></c:out>"><i
+					class="fas fa-tools"></i></td>
+				<td class="consegnaBtn"
+					data-id="<c:out value="${order.getId()}"></c:out>"><i
+					class="fas fa-check-square consegna"></i></td>
+				<td class="deleteBtn"
+					data-id="<c:out value="${order.getId()}"></c:out>"><i
+					class="fas fa-trash-alt"></i></td>
 			</tr>
 		</c:forEach>
 

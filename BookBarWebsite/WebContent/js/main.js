@@ -10,4 +10,4 @@ let handleClick = () => {
 	red = !red;
 };
 
-btn.addEventListener("click", handleClick);
+// btn.addEventListener("click", handleClick);

@@ -6,7 +6,7 @@
 
 	<div class="row">
 		<div class="col-sm-4">
-		<h2>Welcome to Book Bar!</h2>
+			<h2>Welcome to Book Bar!</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed do
 				eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad
 				minim veniam, quis nostrum exercitationem ullamco laboriosam, nisi

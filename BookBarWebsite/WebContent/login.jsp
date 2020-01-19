@@ -49,7 +49,7 @@
 		<a href="/BookBarWebsite/">
 		<img id="profile-img" class="profile-img-card" src="./img/coffee-cup.png" /></a>
 		<p id="profile-name" class="profile-name-card"></p>
-		<form class="form-signin">
+		<form class="form-signin" method="POST" action="login">
 			<span id="reauth-email" class="reauth-email"></span> <input
 				type="email" name="email" id="inputEmail" class="form-control"
 				placeholder="Your Email" required autofocus> <input

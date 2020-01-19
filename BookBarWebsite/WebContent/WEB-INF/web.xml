@@ -1,52 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-	<display-name>webProjectBase</display-name>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-	</welcome-file-list>
-
-	<servlet>
-		<servlet-name>controller.GestioneOrdini</servlet-name>
-		<servlet-class>controller.GestioneOrdini</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>controller.GestioneOrdini</servlet-name>
-		<url-pattern>/gestione_ordini</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>controller.GestioneUtenti</servlet-name>
-		<servlet-class>controller.GestioneUtenti</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>controller.GestioneUtenti</servlet-name>
-		<url-pattern>/gestione_utenti</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>controller.GestioneMenu</servlet-name>
-		<servlet-class>controller.GestioneMenu</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>controller.GestioneMenu</servlet-name>
-		<url-pattern>/gestione_menu</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>controller.Login</servlet-name>
-		<servlet-class>controller.Login</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>controller.Login</servlet-name>
-		<url-pattern>/login</url-pattern>
-	</servlet-mapping>
-
-
-	<!-- API End Points -->
+<!-- 
+   <display-name>Book Bar</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list> --> 
+  
+  <!-- Home -->
+  <servlet>
+  	<servlet-name>controller.Home</servlet-name>
+  	<servlet-class>controller.Home</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>controller.Home</servlet-name>
+  	<url-pattern></url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  <!-- Login -->
+  <servlet>
+  	<servlet-name>controller.Login</servlet-name>
+  	<servlet-class>controller.Login</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>controller.Login</servlet-name>
+  	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  <!-- AreaClienti -->
+  <servlet>
+  	<servlet-name>controller.AreaClienti</servlet-name>
+  	<servlet-class>controller.AreaClienti</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>controller.AreaClienti</servlet-name>
+  	<url-pattern>/area_clienti</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  <!-- GestioneMenu -->
+  <servlet>
+  	<servlet-name>controller.GestioneMenu</servlet-name>
+  	<servlet-class>controller.GestioneMenu</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>controller.GestioneMenu</servlet-name>
+  	<url-pattern>/gestione_menu</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  <!-- GestioneOrdini -->
+  <servlet>
+  	<servlet-name>controller.GestioneOrdini</servlet-name>
+  	<servlet-class>controller.GestioneOrdini</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>controller.GestioneOrdini</servlet-name>
+  	<url-pattern>/gestione_ordini</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  <!-- GestioneUtenti -->
+  <servlet>
+  	<servlet-name>controller.GestioneUtenti</servlet-name>
+  	<servlet-class>controller.GestioneUtenti</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>controller.GestioneUtenti</servlet-name>
+  	<url-pattern>/gestione_utenti</url-pattern>
+  </servlet-mapping>
+  
+  <!-- API End Points -->
 	<servlet>
 		<servlet-name>api.utenti</servlet-name>
 		<servlet-class>api.utenti</servlet-class>
@@ -64,4 +105,5 @@
 		<servlet-name>api.ordini</servlet-name>
 		<url-pattern>/api/ordini</url-pattern>
 	</servlet-mapping>
-</web-app>  
+
+</web-app>

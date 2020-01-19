@@ -46,20 +46,16 @@
 
 <div class="container">
 	<div class="card card-container">
-		<a href="http://localhost:8080/BookBarWebsite/"><img
-			id="profile-img" class="profile-img-card" src="./img/coffee-cup.png" /></a>
+		<a href="/BookBarWebsite/">
+		<img id="profile-img" class="profile-img-card" src="./img/coffee-cup.png" /></a>
 		<p id="profile-name" class="profile-name-card"></p>
 		<form class="form-signin">
 			<span id="reauth-email" class="reauth-email"></span> <input
-				type="email" id="inputEmail" class="form-control"
-				placeholder="Email address" required autofocus> <input
-				type="password" id="inputPassword" class="form-control"
+				type="email" name="email" id="inputEmail" class="form-control"
+				placeholder="Your Email" required autofocus> <input
+				type="password" name="password" id="inputPassword" class="form-control"
 				placeholder="Password" required>
-			<div id="remember" class="checkbox">
-				<label> <input type="checkbox" value="remember-me">
-					Remember me
-				</label>
-			</div>
+				
 			<button class="btn btn-lg btn-primary btn-block btn-signin"
 				type="submit">Sign in</button>
 			<button class="btn btn-lg btn-primary btn-block btn-register"

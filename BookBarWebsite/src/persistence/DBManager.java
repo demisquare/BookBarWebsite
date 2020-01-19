@@ -50,6 +50,10 @@ public class DBManager {
 	public Utente findUserByPrimaryKey(int subject) {
 		return getUtenteDAO().findByPrimaryKey(subject);
 	}
+	
+	public Utente findUserByCredentials(String email, String password) {
+		return getUtenteDAO().findByCredentials(email, password);
+	}
 
 	public int getCountAllUsers() {
 		return 1000;

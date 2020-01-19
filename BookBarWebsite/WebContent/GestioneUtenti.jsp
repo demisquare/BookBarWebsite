@@ -11,24 +11,14 @@
 		<tr>
 			<th scope="col">#</th>
 			<th scope="col">ID</th>
-			<th scope="col">Username</th>
-			<th scope="col">Ruolo</th>
+			<th scope="col">Email</th>
+			<th scope="col">FirstName</th>
+			<th scope="col">LastName</th>
+			<th scope="col">UserType</th>
 			<th scope="col"></th>
 		</tr>
 	</thead>
 	<tbody class="user-table">
-
-		<!-- <c:forEach items="${users}" var="user" varStatus="loop">
-			<tr class="userRow">
-				<th scope="row"><c:out value="${loop.index}"></c:out></th>
-				<td><c:out value="${user.getId()}"></c:out></td>
-				<td><c:out value="${user.getUsername()}"></c:out></td>
-				<td><c:out value="${user.getRole()}"></c:out></td>
-				<td class="userDeleteBtn"
-					data-id="<c:out value="${user.getId()}"></c:out>"><i
-					class="fas fa-trash-alt"></i></td>
-			</tr>
-		</c:forEach> -->
 
 	</tbody>
 </table>
@@ -54,6 +44,14 @@
 				<div class="form-group">
 					<label for="passwd">Password</label> <input type="password"
 						class="form-control" id="passwd">
+				</div>
+				<div class="form-group">
+					<label for="firstname">First Name</label> <input type="text"
+						class="form-control" id="firstname">
+				</div>
+				<div class="form-group">
+					<label for="lastname">Last Name</label> <input type="text"
+						class="form-control" id="lastname">
 				</div>
 				<div class="form-group form-check">
 					<input type="checkbox" class="form-check-input" id="admin"
@@ -86,12 +84,12 @@
 			  "data": {}
 			}).done(function (response) {
 				let data = JSON.parse(JSON.stringify(response));
-
+				// {"id":1,"role":"admin","firstName":"Paola","email":"paola@unical.it","password":"paola","lastName":"Ciaone"}
 				console.log("Data",data);
 				let html = '';
 				let k = 0;
 				for (let row in data) {
-					let singleRowHTML = '<tr class="userRow"><th scope="row">' + k + '</th><td>' + data[row].id + '</td><td>' + data[row].username + '</td><td>' + data[row].role + '</td><td class="userDeleteBtn" data-id="'+data[row].id+'"><i class="fas fa-trash-alt deleteIcon"></i></td></tr>';
+					let singleRowHTML = '<tr class="userRow"><th scope="row">' + k + '</th><td>' + data[row].id + '</td><td>' + data[row].email + '</td><td>' + data[row].firstName + '</td><td>' + data[row].lastName + '</td><td>' + data[row].role + '</td><td class="userDeleteBtn" data-id="'+data[row].id+'"><i class="fas fa-trash-alt deleteIcon"></i></td></tr>';
 					html += singleRowHTML;
 					k++;
 				}
@@ -127,6 +125,9 @@
 		data.operation="add";
 		data.email=document.querySelector("input[type='email']").value;
 		data.password=document.querySelector("input[type='password']").value;
+		debugger
+		data.fn=document.querySelector("#firstname").value;
+		data.ln=document.querySelector("#lastname").value;
 		data.isAdmin=document.querySelector("#admin").checked;
 		
 		settings.data = data;

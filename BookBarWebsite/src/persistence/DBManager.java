@@ -1,8 +1,17 @@
 package persistence;
 
+import model.Menu;
+import model.Ordine;
+import model.Prodotto;
 import model.Utente;
+import persistence.dao.MenuDAO;
+import persistence.dao.OrdineDAO;
+import persistence.dao.ProdottoDAO;
 import persistence.dao.UtenteDAO;
 import persistence.dao.jdbc.UtenteDaoJDBC;
+import persistence.dao.jdbc.MenuDaoJDBC;
+import persistence.dao.jdbc.OrdineDaoJDBC;
+import persistence.dao.jdbc.ProdottoDaoJDBC;
 
 import java.util.List;
 
@@ -37,24 +46,23 @@ public class DBManager {
 	private DBManager() {
 	}
 
-	
-	
-	// UTENTI // 
+	// UTENTI //
 	public Utente findUserByPrimaryKey(int subject) {
 		return getUtenteDAO().findByPrimaryKey(subject);
 	}
+
 	public int getCountAllUsers() {
 		return 1000;
 	}
-	
+
 	public List<Utente> getAllUsers() {
 		return getUtenteDAO().findAll();
 	}
-	
+
 	public void addUser(Utente utente) {
 		getUtenteDAO().save(utente);
 	}
-	
+
 	public void deleteUser(Utente utente) {
 		getUtenteDAO().delete(utente);
 	}
@@ -62,4 +70,68 @@ public class DBManager {
 	public UtenteDAO getUtenteDAO() {
 		return new UtenteDaoJDBC(dataSource);
 	}
+
+	// ORDINI //
+	public Ordine findOrderByPrimaryKey(String userid, String menuid) {
+		return getOrdineDAO().findByPrimaryKey(userid, menuid);
+	}
+
+	public List<Ordine> getAllOrders() {
+		return getOrdineDAO().findAll();
+	}
+
+	public void addUser(Ordine ordine) {
+		getOrdineDAO().save(ordine);
+	}
+
+	public void deleteUser(Ordine ordine) {
+		getOrdineDAO().delete(ordine);
+	}
+
+	public OrdineDAO getOrdineDAO() {
+		return new OrdineDaoJDBC(dataSource);
+	}
+
+	// Menu //
+	public Menu findMenuByPrimaryKey(int menuid) {
+		return getMenuDAO().findByPrimaryKey(menuid);
+	}
+
+	public List<Menu> getAllMenus() {
+		return getMenuDAO().findAll();
+	}
+
+	public void addMenu(Menu menu) {
+		getMenuDAO().save(menu);
+	}
+
+	public void deleteMenu(Menu menu) {
+		getMenuDAO().delete(menu);
+	}
+
+	public MenuDAO getMenuDAO() {
+		return new MenuDaoJDBC(dataSource);
+	}
+
+	// Prodotti //
+	public Prodotto findProdByPrimaryKey(int prodid) {
+		return getProdottoDAO().findByPrimaryKey(prodid);
+	}
+
+	public List<Prodotto> getAllProds() {
+		return getProdottoDAO().findAll();
+	}
+
+	public void addProd(Prodotto prod) {
+		getProdottoDAO().save(prod);
+	}
+
+	public void deleteProd(Prodotto prod) {
+		getProdottoDAO().delete(prod);
+	}
+
+	public ProdottoDAO getProdottoDAO() {
+		return new ProdottoDaoJDBC(dataSource);
+	}
+
 }

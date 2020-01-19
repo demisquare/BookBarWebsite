@@ -1,17 +1,13 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.google.gson.Gson;
 
 import model.Utente;
 import persistence.DBManager;
@@ -33,6 +29,8 @@ public final class GestioneUtenti extends HttpServlet {
 		String operation = req.getParameter("operation");
 		int subject;
 		String email;
+		String firstname;
+		String lastname;
 		String password;
 		boolean isAdmin = false;
 
@@ -45,23 +43,26 @@ public final class GestioneUtenti extends HttpServlet {
 			System.out.println("Soggetto da eliminare: " + subject);
 			break;
 		case "add":
+			firstname = req.getParameter("fn");
+			lastname = req.getParameter("ln");
 			email = req.getParameter("email");
+
 			password = req.getParameter("password");
 			isAdmin = Boolean.parseBoolean(req.getParameter("isAdmin"));
 			String role = "user";
-			if (isAdmin) role = "admin";
-			Utente newUser = new Utente(email, role);
+			if (isAdmin)
+				role = "admin";
+			System.out.println("Soggetto da aggiungere | email " + email + " password " + password + " role: " + isAdmin
+					+ " firstname " + firstname + " lastname " + lastname);
+			Utente newUser = new Utente(firstname, lastname, email, role);
 			newUser.setPassword(password);
 			dbm.addUser(newUser);
-			
+
 			// add nel database
-			System.out.println("Soggetto da aggiungere: " + email + " password: " + password + " isAdmin: " + isAdmin);
 			break;
 		}
-		
+
 		res.setStatus(200);
 	}
 
-
-	
 }

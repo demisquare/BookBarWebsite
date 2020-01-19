@@ -5,14 +5,20 @@ public class Prodotto {
 	private int id;
 	private String descrizione;
 	private double prezzo;
-	private String deadline;
 
-	public Prodotto(String nome, int id, String descrizione, double prezzo, String deadline) {
+	public Prodotto() {
+		this.nome = "nome";
+		this.id = -1;
+		this.descrizione = "";
+		this.prezzo = 0;
+
+	}
+
+	public Prodotto(String nome, int id, String descrizione, double prezzo) {
 		this.nome = nome;
 		this.id = id;
 		this.descrizione = descrizione;
 		this.prezzo = prezzo;
-		this.deadline = deadline;
 	}
 
 	public String getNome() {
@@ -46,13 +52,4 @@ public class Prodotto {
 	public void setPrezzo(double prezzo) {
 		this.prezzo = prezzo;
 	}
-
-	public String getDeadline() {
-		return deadline;
-	}
-
-	public void setDeadline(String deadline) {
-		this.deadline = deadline;
-	}
-
 }

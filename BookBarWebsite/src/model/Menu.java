@@ -8,12 +8,20 @@ public class Menu {
 	private ArrayList<Prodotto> prodotti;
 	private double prezzo;
 
-	public Menu(int id, String name, ArrayList<Prodotto> prodotti, double prezzo) {
-		this.id = id;
-		this.name = name;
-		this.prodotti = prodotti;
-		this.prezzo = prezzo;
+	public Menu() {
+		this.id = -1;
+		this.prodotti = new ArrayList<Prodotto>();
+		this.prezzo = 0;
+		this.name = "";
 	}
+
+	// public Menu(int id, String name, ArrayList<Prodotto> prodotti, double prezzo)
+	// {
+	// this.id = id;
+	// this.name = name;
+	// this.prodotti = prodotti;
+	// this.prezzo = prezzo;
+	// }
 
 	public int getId() {
 		return id;

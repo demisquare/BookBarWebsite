@@ -53,28 +53,32 @@
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<div class="collapse navbar-collapse justify-content-sm-between" id="navbarNavDropdown">
 				<ul class="navbar-nav">
 					<li class="nav-item active"><a class="nav-link"
-						href="http://localhost:8080/BookBarWebsite/">Home <span
+						href="${pageContext.request.contextPath}/">Home <span
 							class="sr-only">(current)</span></a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Menu</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="http://localhost:8080/BookBarWebsite/login">Login</a></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#"
-						id="navbarDropdownMenuLink" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> Admin </a>
-						<div class="dropdown-menu"
-							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item"
-								href="http://localhost:8080/BookBarWebsite/gestione_utenti">Utenti</a>
-							<a class="dropdown-item"
-								href="http://localhost:8080/BookBarWebsite/gestione_menu">Prodotti
-								e menu</a> <a class="dropdown-item"
-								href="http://localhost:8080/BookBarWebsite/gestione_ordini">Ordini</a>
-						</div></li>
 				</ul>
+				
+				<ul class="navbar-nav">
+<c:choose>
+    <c:when test="${utente.getRole().equals(\"admin\")}">
+        <%@ include file="admin_menu.jsp" %>
+    </c:when>
+
+</c:choose>
+
+<c:choose>
+    <c:when test="${not empty utente}">
+		<li class="nav-item"><a class="nav-link" href="#">Ciao, ${utente.getFirstName()}</a></a></li>
+    </c:when>
+    <c:otherwise>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a></li>
+    </c:otherwise>
+</c:choose>
+
+	</ul>
 			</div>
 		</div>
 	</nav>

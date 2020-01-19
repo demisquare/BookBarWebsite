@@ -1,6 +1,9 @@
 <!-- header bar -->
 <%@include file="component/header.jsp"%>
 
+<c:choose>
+    <c:when test="${utente.getRole().equals(\"admin\")}">
+       
 <h1>Utenti</h1>
 <button type="button" class="btn btn-success adminAddBtn"
 	data-toggle="modal" data-target="#exampleModalCenter">Aggiungi
@@ -67,6 +70,15 @@
 		</div>
 	</div>
 </div>
+
+    </c:when>
+    
+        <c:otherwise>
+
+    <% response.sendRedirect("login.jsp"); %>
+    </c:otherwise>
+</c:choose>
+
 <!-- footer bar -->
 <%@include file="component/footer.jsp"%>
 
@@ -152,5 +164,7 @@
 		getUserList();
   });
 </script>
+
+
 </body>
 </html>

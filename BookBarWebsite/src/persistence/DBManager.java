@@ -17,9 +17,15 @@ import java.util.List;
 
 public class DBManager {
 
-	private final static String url = "jdbc:postgresql://localhost/bb";
-	private final static String user = "bb";
-	private final static String password = "bb";
+	// DB Locale
+//	private final static String url = "jdbc:postgresql://localhost/bb";
+//	private final static String user = "bb";
+//	private final static String password = "bb";
+	
+	// DB Online
+	private final static String url = "jdbc:postgresql://rajje.db.elephantsql.com/scsobnvn";
+	private final static String user = "scsobnvn";
+	private final static String password = "eyWmoMiquMNtJlm4yW75U0_004k0Tcq9";
 
 	private static DataSource dataSource;
 

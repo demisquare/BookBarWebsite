@@ -6,8 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-@WebServlet(value = "/gestione_menu")
 @SuppressWarnings("serial")
 
 public final class GestioneMenu extends HttpServlet {

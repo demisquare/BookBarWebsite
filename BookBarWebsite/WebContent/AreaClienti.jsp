@@ -8,7 +8,7 @@
 		<div class="col-sm-4">
 			<h2>
 				<c:if test="${utente != null}">
-						Welcome ${utente.getFirstName()};
+						Welcome ${utente.getFirstName()}.
 				</c:if>
 			</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed do

@@ -18,12 +18,12 @@ public class Home extends HttpServlet {
 		RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 
 		// Codice di prova, da eliminare
-		Utente utonto = new Utente();
-		utonto.setFirstName("test");
-		utonto.setRole("admin");
+		//Utente utonto = new Utente();
+		//utonto.setFirstName("test");
+		//utonto.setRole("admin");
 		// utonto.setRole("user");
-		HttpSession session = req.getSession();
-		session.setAttribute("utente", utonto);
+		//HttpSession session = req.getSession();
+		//session.setAttribute("utente", utonto);
 		// ====================================
 		
 		rd.forward(req, resp);

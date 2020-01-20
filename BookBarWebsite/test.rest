@@ -1,0 +1,8 @@
+###
+GET http://localhost:8080/BookBarWebsite/api/utenti
+###
+GET http://localhost:8080/BookBarWebsite/api/prodotti
+###
+GET http://localhost:8080/BookBarWebsite/api/ordini
+###
+GET http://localhost:8080/BookBarWebsite/api/menu

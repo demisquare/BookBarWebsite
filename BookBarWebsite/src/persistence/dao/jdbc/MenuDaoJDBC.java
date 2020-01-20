@@ -8,12 +8,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.Menu;
-import model.Menu;
-import model.Utente;
+import model.Prodotto;
 import persistence.DBManager;
 import persistence.DataSource;
 import persistence.dao.MenuDAO;
-import persistence.dao.UtenteDAO;
 
 public class MenuDaoJDBC implements MenuDAO {
 	private DataSource dataSource;
@@ -55,15 +53,17 @@ public class MenuDaoJDBC implements MenuDAO {
 		try {
 			connection = this.dataSource.getConnection();
 			PreparedStatement statement;
-			String query = "SELECT * FROM public.\"Menu\" WHERE public.\"Menu\".\"MenuID\" = ?";
+			String query = "SELECT * FROM public.\"MenuProduct\" as mp JOIN public.\"Menu\" as m ON mp.\"MenuID\" = m.\"MenuID\" AND m.\"MenuID\" = ?";
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, menuid);
-
+			double prezzo = 0.0;
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {
-	        menu = new Menu();
-	        menu.setId(result.getInt("MenuID"));
-	        menu.setName(result.getString("Name"));
+			while(result.next()) {
+		        menu = new Menu();
+		        menu.setId(result.getInt("MenuID"));
+		        menu.setName(result.getString("Name"));
+		        Prodotto prodotto = DBManager.getInstance().getProdottoDAO().findByPrimaryKey(result.getInt("ProductID"));
+		        menu.addProdotto(prodotto);
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
@@ -79,31 +79,20 @@ public class MenuDaoJDBC implements MenuDAO {
 
 	public List<Menu> findAll() {
 		Connection connection = null;
-		List<Menu> studenti = new LinkedList<>();
+		List<Menu> menues = new LinkedList<>();
 		try {
 			connection = this.dataSource.getConnection();
 			Menu menu;
 			PreparedStatement statement;
-			String query = "select * from menu";
+			String query = "select \"MenuID\" as id\n" + 
+							"from \n" + 
+							"	public.\"Menu\" GROUP BY \"MenuID\" ";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-//        menu = new Menu();
-//        menu.setMatricola(result.getString("matricola"));
-//        menu.setNome(result.getString("nome"));
-//        menu.setCognome(result.getString("cognome"));
-//        menu.setDataNascita(result.getString("datanascita"));
-//
-//        Scuola scuola = DBManager.getInstance().getScuolaDAO().findByPrimaryKey(
-//            result.getLong("scuola"));
-//        menu.setScuolaDiDiploma(scuola);
-//
-//        CorsoDiLaurea corsoDiLaurea =
-//            DBManager.getInstance().getCorsoDiLaureaDAO().findByPrimaryKey(
-//                result.getLong("corsodilaurea"));
-//        menu.setCorsoDiLaurea(corsoDiLaurea);
-//
-//        studenti.add(menu);
+		        int id = result.getInt("id");
+		        menu = findByPrimaryKey(id);
+		        menues.add(menu);
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
@@ -114,7 +103,7 @@ public class MenuDaoJDBC implements MenuDAO {
 				throw new RuntimeException(e.getMessage());
 			}
 		}
-		return studenti;
+		return menues;
 	}
 
 	public void update(Menu menu) {

@@ -120,5 +120,23 @@
 		<servlet-name>api.ordini</servlet-name>
 		<url-pattern>/api/ordini</url-pattern>
 	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>api.prodotti</servlet-name>
+		<servlet-class>api.prodotti</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>api.prodotti</servlet-name>
+		<url-pattern>/api/prodotti</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>api.menu</servlet-name>
+		<servlet-class>api.menu</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>api.menu</servlet-name>
+		<url-pattern>/api/menu</url-pattern>
+	</servlet-mapping>
 
 </web-app>

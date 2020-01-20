@@ -55,4 +55,9 @@ public class Menu {
 		this.prezzo = prezzo;
 	}
 
+	public void addProdotto(Prodotto prodotto) {
+		// TODO Auto-generated method stub
+		this.prodotti.add(prodotto);
+	}
+
 }

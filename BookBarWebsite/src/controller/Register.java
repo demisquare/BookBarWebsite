@@ -27,10 +27,12 @@ public class Register extends HttpServlet {
 		String lastname = req.getParameter("lastname");
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
-		String confirm_password = req.getParameter("confirm_password");
+		String confirm_password = req.getParameter("confirmpassword");
 		
 		String role = "user";
 		
+		System.out.println("Soggetto da aggiungere | email " + email + " password " + password + " role: " + role
+				+ " firstname " + firstname + " lastname " + lastname + " password_confirm " + confirm_password);
 		// verifica la conferma delle password...
 		if (password.equals(confirm_password)) {
 			// verifica se l'utente esiste già...
@@ -38,13 +40,11 @@ public class Register extends HttpServlet {
 			if (utente == null) {
 				
 				// inserisce l'utente nel database...
-				System.out.println("Soggetto da aggiungere | email " + email + " password " + password + " role: " + role
-						+ " firstname " + firstname + " lastname " + lastname);
 				utente = new Utente(firstname, lastname, email, role);
 				utente.setPassword(password);
 				dbm.addUser(utente);
 				System.out.println("aggiunto con successo");
-				
+					
 				// login automatico...
 				req.getSession().setAttribute("utente", utente);
 				RequestDispatcher rd = req.getRequestDispatcher("AreaClienti.jsp");
@@ -52,9 +52,12 @@ public class Register extends HttpServlet {
 
 			} else {
 				// req.getSession().invalidate();
+				System.out.println("Utente già esistente");
 				RequestDispatcher rd = req.getRequestDispatcher("error.html");
 				rd.forward(req, resp);
 			}
+		} else {
+			System.out.println("Password non corrispondente");
 		}
 
 	}

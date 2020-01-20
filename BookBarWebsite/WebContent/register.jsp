@@ -49,7 +49,7 @@
 		<a href="/BookBarWebsite/">
 		<img id="profile-img" class="profile-img-card" src="./img/coffee-cup.png" /></a>
 		<p id="profile-name" class="profile-name-card"></p>
-		<form class="form-signin" method="POST" action="register">
+		<form class="form-signin" method="POST" action="${pageContext.request.contextPath}/register">
 			<span id="reauth-email" class="reauth-email"></span>
 			<input type="text" name="firstname" id="inputFirstname" class="form-control" placeholder="Your First name" required autofocus>
 			<input type="text" name="lastname" id="inputLastname" class="form-control" placeholder="Your Last name" required>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<title>Sign In</title>
+<title>Register</title>
 <link rel="apple-touch-icon" sizes="57x57"
 	href="icon/apple-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="60x60"
@@ -49,21 +49,18 @@
 		<a href="/BookBarWebsite/">
 		<img id="profile-img" class="profile-img-card" src="./img/coffee-cup.png" /></a>
 		<p id="profile-name" class="profile-name-card"></p>
-		<form class="form-signin" method="POST" action="login">
-			<span id="reauth-email" class="reauth-email"></span> <input
-				type="email" name="email" id="inputEmail" class="form-control"
-				placeholder="Your Email" required autofocus> <input
-				type="password" name="password" id="inputPassword" class="form-control"
-				placeholder="Password" required>
+		<form class="form-signin" method="POST" action="register">
+			<span id="reauth-email" class="reauth-email"></span>
+			<input type="text" name="firstname" id="inputFirstname" class="form-control" placeholder="Your First name" required autofocus>
+			<input type="text" name="lastname" id="inputLastname" class="form-control" placeholder="Your Last name" required>
+			<input type="email" name="email" id="inputEmail" class="form-control" placeholder="Your Email" required>
+			<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+			<input type="password" name="confirmpassword" id="inputConfirmPassword" class="form-control" placeholder="Confirm Password" required>
 				
-			<button class="btn btn-lg btn-primary btn-block btn-signin"
-				type="submit">Sign in</button>
+			<button class="btn btn-lg btn-primary btn-block btn-register"
+				type="submit">Register here</button>
 		</form>
-		<!-- /form -->
-		<div>
-			<a href="#" class = "forgot-password"> Forgot the password? </a>
-			<a href="${pageContext.request.contextPath}/register" class = "forgot-password"> Register here. </a>
-		</div>
+		<a href="${pageContext.request.contextPath}/login" class = "forgot-password"> Already registered? Sign in. </a>
 	</div>
 	<!-- /card-container -->
 </div>

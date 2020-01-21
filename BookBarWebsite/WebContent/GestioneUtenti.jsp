@@ -87,7 +87,7 @@
 		$.ajax({
 			  "async": true,
 			  "crossDomain": true,
-			  "url": "http://localhost:8080/BookBarWebsite/api/user",
+			  "url": "http://localhost:8080/BookBarWebsite/api/utenti",
 			  "method": "GET",
 			  "headers": {
 			    "Content-Type": "application/json",

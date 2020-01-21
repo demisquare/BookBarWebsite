@@ -11,8 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import model.Utente;
 
-@SuppressWarnings("serial")
 public class Home extends HttpServlet {
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
@@ -20,15 +20,15 @@ public class Home extends HttpServlet {
 		// Codice di prova, da eliminare
 		Utente utonto = new Utente();
 		utonto.setFirstName("test");
-		//utonto.setRole("admin");
-		 utonto.setRole("user");
+		utonto.setRole("admin");
+		// utonto.setRole("user");
 		HttpSession session = req.getSession();
 		session.setAttribute("utente", utonto);
 		// ====================================
-		
+		System.out.println("gfjldkgjfkldgj");
 		rd.forward(req, resp);
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(req, resp);

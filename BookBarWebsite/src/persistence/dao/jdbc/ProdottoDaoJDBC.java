@@ -18,7 +18,25 @@ public class ProdottoDaoJDBC implements ProdottoDAO {
 		this.dataSource = dataSource;
 	}
 
-	public void save(Prodotto prodotto) {}
+	public void save(Prodotto prodotto) {
+		Connection connection = null;
+		try {
+			connection = this.dataSource.getConnection();
+			String insert = "INSERT INTO \"public\".\"Product\" (\"Name\", \"Description\") VALUES (?,?)";
+			PreparedStatement statement = connection.prepareStatement(insert);
+			statement.setString(1, prodotto.getNome());
+			statement.setString(2, prodotto.getDescrizione());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
 
 	public Prodotto findByPrimaryKey(int prodid) {
 		Connection connection = null;
@@ -32,10 +50,10 @@ public class ProdottoDaoJDBC implements ProdottoDAO {
 
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
-	        prodotto = new Prodotto();
-	        prodotto.setId(result.getInt("ProductID"));
-	        prodotto.setNome(result.getString("Name"));
-	        prodotto.setDescrizione(result.getString("Description"));
+				prodotto = new Prodotto();
+				prodotto.setId(result.getInt("ProductID"));
+				prodotto.setNome(result.getString("Name"));
+				prodotto.setDescrizione(result.getString("Description"));
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
@@ -60,11 +78,11 @@ public class ProdottoDaoJDBC implements ProdottoDAO {
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-		        prodotto = new Prodotto();
-		        prodotto.setId(result.getInt("ProductID"));
-		        prodotto.setNome(result.getString("Name"));
-		        prodotto.setDescrizione(result.getString("Description"));
-	        prodotti.add(prodotto);
+				prodotto = new Prodotto();
+				prodotto.setId(result.getInt("ProductID"));
+				prodotto.setNome(result.getString("Name"));
+				prodotto.setDescrizione(result.getString("Description"));
+				prodotti.add(prodotto);
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());

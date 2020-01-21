@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory.Default;
+
 import model.Utente;
 import persistence.DBManager;
 
@@ -41,7 +43,9 @@ public final class GestioneUtenti extends HttpServlet {
 			Utente user = dbm.findUserByPrimaryKey(subject);
 			dbm.deleteUser(user);
 			System.out.println("Soggetto da eliminare: " + subject);
+			res.setStatus(200);
 			break;
+
 		case "add":
 			firstname = req.getParameter("fn");
 			lastname = req.getParameter("ln");
@@ -57,12 +61,15 @@ public final class GestioneUtenti extends HttpServlet {
 			Utente newUser = new Utente(firstname, lastname, email, role);
 			newUser.setPassword(password);
 			dbm.addUser(newUser);
-
+			res.setStatus(200);
 			// add nel database
+			break;
+
+		default:
+			res.setStatus(200);
 			break;
 		}
 
-		res.setStatus(200);
 	}
 
 }

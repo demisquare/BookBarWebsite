@@ -22,15 +22,15 @@ public class Register extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		DBManager dbm = persistence.DBManager.getInstance();
-		
+
 		String firstname = req.getParameter("firstname");
 		String lastname = req.getParameter("lastname");
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 		String confirm_password = req.getParameter("confirmpassword");
-		
+
 		String role = "user";
-		
+
 		System.out.println("Soggetto da aggiungere | email " + email + " password " + password + " role: " + role
 				+ " firstname " + firstname + " lastname " + lastname + " password_confirm " + confirm_password);
 		// verifica la conferma delle password...
@@ -38,13 +38,13 @@ public class Register extends HttpServlet {
 			// verifica se l'utente esiste già...
 			Utente utente = dbm.findUserByCredentials(email, password);
 			if (utente == null) {
-				
+
 				// inserisce l'utente nel database...
 				utente = new Utente(firstname, lastname, email, role);
 				utente.setPassword(password);
 				dbm.addUser(utente);
 				System.out.println("aggiunto con successo");
-					
+
 				// login automatico...
 				req.getSession().setAttribute("utente", utente);
 				RequestDispatcher rd = req.getRequestDispatcher("AreaClienti.jsp");

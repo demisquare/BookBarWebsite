@@ -1,5 +1,8 @@
 package persistence;
 
+import java.util.List;
+
+import io.github.cdimascio.dotenv.Dotenv;
 import model.Menu;
 import model.Ordine;
 import model.Prodotto;
@@ -8,36 +11,34 @@ import persistence.dao.MenuDAO;
 import persistence.dao.OrdineDAO;
 import persistence.dao.ProdottoDAO;
 import persistence.dao.UtenteDAO;
-import persistence.dao.jdbc.UtenteDaoJDBC;
 import persistence.dao.jdbc.MenuDaoJDBC;
 import persistence.dao.jdbc.OrdineDaoJDBC;
 import persistence.dao.jdbc.ProdottoDaoJDBC;
-
-import java.util.List;
-import io.github.cdimascio.dotenv.Dotenv;
+import persistence.dao.jdbc.UtenteDaoJDBC;
 
 public class DBManager {
 	static Dotenv dotenv = Dotenv.configure().load();
-	
+
 	// DB Locale
-		private final static String url = "jdbc:postgresql://localhost/bb";
-		private final static String user = "bb";
-		private final static String password = "bb";
-	
-//	// DB Online
-//	//	private final static String url = "jdbc:postgresql://rajje.db.elephantsql.com/scsobnvn";
-//	//	private final static String user = "scsobnvn";
-//	//	private final static String password = "eyWmoMiquMNtJlm4yW75U0_004k0Tcq9";
-//
+	 private final static String url = "jdbc:postgresql://localhost/bb";
+	 private final static String user = "bb";
+	 private final static String password = "bb";
+
+	// DB Online
+	// private final static String url =
+	// "jdbc:postgresql://rajje.db.elephantsql.com/scsobnvn";
+	// private final static String user = "scsobnvn";
+	// private final static String password = "eyWmoMiquMNtJlm4yW75U0_004k0Tcq9";
+
 //	private final static String url = dotenv.get("DB_URL");
 //	private final static String user = dotenv.get("DB_USER");
 //	private final static String password = dotenv.get("DB_PASS");
-	
+
 	private static DataSource dataSource;
 
 	static {
 		try {
-			System.out.println("DATI LETTI da .env ------------ " + url + " " + user +" " + password);
+			System.out.println("DATI LETTI da .env ------------ " + url + " " + user + " " + password);
 			Class.forName("org.postgresql.Driver").newInstance();
 			dataSource = new DataSource(url, user, password);
 			System.out.println("    Connessione al DB ok\n");
@@ -63,7 +64,7 @@ public class DBManager {
 	public Utente findUserByPrimaryKey(int subject) {
 		return getUtenteDAO().findByPrimaryKey(subject);
 	}
-	
+
 	public Utente findUserByCredentials(String email, String password) {
 		return getUtenteDAO().findByCredentials(email, password);
 	}
@@ -97,16 +98,20 @@ public class DBManager {
 		return getOrdineDAO().findAll();
 	}
 
-	public void addUser(Ordine ordine) {
+	public void addOrder(Ordine ordine) {
 		getOrdineDAO().save(ordine);
 	}
 
-	public void deleteUser(Ordine ordine) {
+	public void deleteOrder(Ordine ordine) {
 		getOrdineDAO().delete(ordine);
 	}
 
 	public OrdineDAO getOrdineDAO() {
 		return new OrdineDaoJDBC(dataSource);
+	}
+	
+	public void updateOrder(Ordine ordine) {
+		getOrdineDAO().update(ordine);
 	}
 
 	// Menu //

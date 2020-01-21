@@ -28,5 +28,6 @@ public final class menu extends HttpServlet {
 		res.getWriter().write(json);
 	}
 
-	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {}
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+	}
 }

@@ -20,12 +20,12 @@ public class Home extends HttpServlet {
 		// Codice di prova, da eliminare
 		Utente utonto = new Utente();
 		utonto.setFirstName("test");
-		//utonto.setRole("admin");
-		 utonto.setRole("user");
+		utonto.setRole("admin");
+//		 utonto.setRole("user");
 		HttpSession session = req.getSession();
 		session.setAttribute("utente", utonto);
 		// ====================================
-		
+		System.out.println("gfjldkgjfkldgj");
 		rd.forward(req, resp);
 	}
 	

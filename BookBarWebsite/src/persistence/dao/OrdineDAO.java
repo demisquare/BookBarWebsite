@@ -7,7 +7,7 @@ import model.Ordine;
 public interface OrdineDAO {
 	public void save(Ordine ordine); // Create
 
-	public Ordine findByPrimaryKey(String userid, String menuid); // Retrieve
+	public Ordine findByPrimaryKey(int orderid); // Retrieve
 
 	public List<Ordine> findAll();
 

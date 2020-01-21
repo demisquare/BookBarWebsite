@@ -46,36 +46,28 @@ public class OrdineDaoJDBC implements OrdineDAO {
     // }
   }
 
-  public Ordine findByPrimaryKey(String userid, String menuid) {
+  public Ordine findByPrimaryKey(int orderid) {
     Connection connection = null;
     Ordine ordine = null;
     try {
       connection = this.dataSource.getConnection();
       PreparedStatement statement;
       String query =
-          "SELECT * FROM public.\"Order\" WHERE public.\"Order\".\"UserID\" = ? AND public.\"Order\".\"MenuID\" = ?";
+          "SELECT * FROM public.\"Order\" WHERE public.\"Order\".\"OrderID\" = ?";
       statement = connection.prepareStatement(query);
-      statement.setString(1, userid);
-      statement.setString(1, menuid);
+      statement.setInt(1, orderid);
 
       ResultSet result = statement.executeQuery();
       if (result.next()) {
-        //        ordine = new Ordine();
-        //        ordine.setMatricola(result.getString("UserID"));
-        //        ordine.setNome(result.getString("MenuID"));
-        //
-        //        Utente utente =
-        //        DBManager.getInstance().getUtenteDAO().findByPrimaryKey(
-        //            result.getInt("UserID"));
-        //				ordine.setUser(utente);
-        //
-        //        Menu menu =
-        //        DBManager.getInstance().getMenuDAO().findByPrimaryKey(
-        //            result.getInt("MenuID"));
-        //        ordine.setMenu(menu);
-        //
-        //				ordine.setSatus(result.getString("Status"));
-        //        ordine.setData(result.getString("Data"));
+          ordine = new Ordine();
+          ordine.setData(result.getTimestamp("Data").toString());
+          ordine.setUser(DBManager.getInstance().getUtenteDAO().findByPrimaryKey(
+                  result.getInt("UserID")));
+          ordine.setId(result.getInt("OrderID"));
+          Menu menu = DBManager.getInstance().getMenuDAO().findByPrimaryKey(
+              result.getInt("MenuID"));
+          ordine.setMenu(menu);
+//          System.out.println("Menu ID " + ordine.getMenu().getName());
       }
     } catch (SQLException e) {
       throw new RuntimeException(e.getMessage());
@@ -101,13 +93,17 @@ public class OrdineDaoJDBC implements OrdineDAO {
       ResultSet result = statement.executeQuery();
       while (result.next()) {
         ordine = new Ordine();
-        Utente user = DBManager.getInstance().getUtenteDAO().findByPrimaryKey(
-            result.getInt("UserID"));
-        ordine.setUser(user);
-
-        Menu menu = DBManager.getInstance().getMenuDAO().findByPrimaryKey(result.getInt("MenuID"));
+        ordine.setData(result.getTimestamp("Data").toString());
+        ordine.setUser(DBManager.getInstance().getUtenteDAO().findByPrimaryKey(
+                result.getInt("UserID")));
+        ordine.setId(result.getInt("OrderID"));
+        
+        
+        
+        Menu menu = DBManager.getInstance().getMenuDAO().findByPrimaryKey(
+            result.getInt("MenuID"));
         ordine.setMenu(menu);
-
+//        System.out.println("Menu ID " + ordine.getMenu().getName());
         ordini.add(ordine);
       }
     } catch (SQLException e) {
@@ -123,26 +119,24 @@ public class OrdineDaoJDBC implements OrdineDAO {
   }
 
   public void update(Ordine ordine) {
-    // Connection connection = null;
-    // try {
-    // connection = this.dataSource.getConnection();
-    // String update =
-    // "UPDATE public.\"Order\" SET public.\"Order\".\"Status\" = ? WHERE
-    // public.\"Order\".\"UserID\" = ? AND public.\"Order\".\"MenuID\" = ? ";
-    // PreparedStatement statement = connection.prepareStatement(update);
-    // statement.setString(1, ordine.getStatus());
-    // statement.setString(2, ordine.getUser().getId());
-    // statement.setString(2, ordine.getMenu().getId());
-    // statement.executeUpdate();
-    // } catch (SQLException e) {
-    // throw new RuntimeException(e.getMessage());
-    // } finally {
-    // try {
-    // connection.close();
-    // } catch (SQLException e) {
-    // throw new RuntimeException(e.getMessage());
-    // }
-    // }
+    Connection connection = null;
+    try {
+      connection = this.dataSource.getConnection();
+      String update = "UPDATE public.\"Order\" SET public.\"Order\".\"Status\" = ? WHERE public.\"Order\".\"UserID\" = ? AND public.\"Order\".\"MenuID\" = ? ";
+      PreparedStatement statement = connection.prepareStatement(update);
+      statement.setString(1, ordine.getStato());
+      statement.setInt(2, ordine.getUser().getId());
+      statement.setInt(2, ordine.getMenu().getId());
+      statement.executeUpdate();
+    } catch (SQLException e) {
+      throw new RuntimeException(e.getMessage());
+    } finally {
+      try {
+        connection.close();
+      } catch (SQLException e) {
+        throw new RuntimeException(e.getMessage());
+      }
+    }
   }
 
   public void delete(Ordine ordine) {

@@ -5,6 +5,7 @@ public class Ordine {
 	private String data;
 	private Utente user;
 	private Menu menu;
+	private int id;
 
 	public Ordine() {
 		this.stato = "Nuovo";
@@ -43,6 +44,14 @@ public class Ordine {
 
 	public void setMenu(Menu menu) {
 		this.menu = menu;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

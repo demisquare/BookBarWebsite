@@ -89,8 +89,8 @@ public class DBManager {
 	}
 
 	// ORDINI //
-	public Ordine findOrderByPrimaryKey(String userid, String menuid) {
-		return getOrdineDAO().findByPrimaryKey(userid, menuid);
+	public Ordine findOrderByPrimaryKey(int orderid) {
+		return getOrdineDAO().findByPrimaryKey(orderid);
 	}
 
 	public List<Ordine> getAllOrders() {

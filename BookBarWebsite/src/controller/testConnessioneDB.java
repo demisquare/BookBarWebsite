@@ -1,6 +1,6 @@
 package controller;
-import java.util.List;
 
+import java.util.List;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,17 +31,17 @@ public final class testConnessioneDB extends HttpServlet {
 		req.setAttribute("utentiPresenti", utenti.size());
 		req.setAttribute("numeri", numeri);
 		req.setAttribute("utenti", utenti);
-		
-	    List<String> list = new ArrayList<>();
-	    list.add("item1");
-	    list.add("item2");
-	    list.add("item3");
-	    String json = new Gson().toJson(list);
+
+		List<String> list = new ArrayList<>();
+		list.add("item1");
+		list.add("item2");
+		list.add("item3");
+		String json = new Gson().toJson(list);
 
 //	    res.setContentType("application/json");
 //	    res.setCharacterEncoding("UTF-8");
 //	    res.getWriter().write(json);
-		
+
 		RequestDispatcher view = req.getRequestDispatcher("testConnessioneDB.jsp");
 		view.forward(req, res);
 	}

@@ -104,7 +104,7 @@ public class UtenteDaoJDBC implements UtenteDAO {
 		}
 		return utente;
 	}
-	
+
 	public List<Utente> findAll() {
 		Connection connection = null;
 		List<Utente> utenti = new LinkedList<>();

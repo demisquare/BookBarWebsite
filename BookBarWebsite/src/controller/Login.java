@@ -12,7 +12,7 @@ import model.Utente;
 import persistence.DBManager;
 
 @SuppressWarnings("serial")
-public class Login extends HttpServlet{
+public class Login extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Object utente = req.getSession().getAttribute("utente");
@@ -21,40 +21,31 @@ public class Login extends HttpServlet{
 			req.getSession().removeAttribute("utente");
 			RequestDispatcher rd = req.getRequestDispatcher("");
 			rd.forward(req, resp);
-		}else {
+		} else {
 			if (utente == null) {
 				RequestDispatcher rd = req.getRequestDispatcher("login.jsp");
 				rd.forward(req, resp);
 			}
 		}
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
-		
+
 		Utente utente = DBManager.getInstance().findUserByCredentials(email, password);
 		if (utente != null) {
 			req.getSession().setAttribute("utente", utente);
 //			resp.sendRedirect(".");
-			
+
 			RequestDispatcher rd = req.getRequestDispatcher("AreaClienti.jsp");
 			rd.forward(req, resp);
-		}else {
-			//req.getSession().invalidate();
+		} else {
+			// req.getSession().invalidate();
 			RequestDispatcher rd = req.getRequestDispatcher("error.html");
 			rd.forward(req, resp);
 		}
-		
+
 	}
 }
-
-
-
-
-
-
-
-
-

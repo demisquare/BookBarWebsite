@@ -45,7 +45,7 @@ public final class GestioneUtenti extends HttpServlet {
 			System.out.println("Soggetto da eliminare: " + subject);
 			res.setStatus(200);
 			break;
-			
+
 		case "add":
 			firstname = req.getParameter("fn");
 			lastname = req.getParameter("ln");
@@ -64,13 +64,12 @@ public final class GestioneUtenti extends HttpServlet {
 			res.setStatus(200);
 			// add nel database
 			break;
-			
+
 		default:
 			res.setStatus(200);
 			break;
 		}
 
-	
 	}
 
 }

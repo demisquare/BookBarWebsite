@@ -4,7 +4,7 @@ public class Chart {
 	private Utente utente;
 	private Prodotto prodotto;
 	private int quantita;
-	
+
 	public Chart(Utente utente, Prodotto prodotto) {
 		this.utente = utente;
 		this.prodotto = prodotto;

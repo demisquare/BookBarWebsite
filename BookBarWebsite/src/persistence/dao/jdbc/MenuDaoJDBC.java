@@ -21,30 +21,22 @@ public class MenuDaoJDBC implements MenuDAO {
 	}
 
 	public void save(Menu menu) {
-		// Connection connection = null;
-		// try {
-		// connection = this.dataSource.getConnection();
-		// String insert =
-		// "insert into menu(matricola, nome, cognome,"
-		// + " datanascita, scuola, corsodilaurea) values (?,?,?,?,?,?)";
-		// PreparedStatement statement = connection.prepareStatement(insert);
-		// statement.setString(1, menu.getMatricola());
-		// statement.setString(2, menu.getNome());
-		// statement.setString(3, menu.getCognome());
-		// statement.setString(4, menu.getDataNascita());
-		// statement.setLong(5, menu.getScuolaDiDiploma().getId());
-		// // statement.setLong(5,
-		// // menu.get.getScuolaDiDiploma().getId());
-		// statement.executeUpdate();
-		// } catch (SQLException e) {
-		// throw new RuntimeException(e.getMessage());
-		// } finally {
-		// try {
-		// connection.close();
-		// } catch (SQLException e) {
-		// throw new RuntimeException(e.getMessage());
-		// }
-		// }
+		Connection connection = null;
+		try {
+			connection = this.dataSource.getConnection();
+			String insert = "INSERT INTO \"public\".\"Menu\" (\"Name\") VALUES (?);";
+			PreparedStatement statement = connection.prepareStatement(insert);
+			statement.setString(1, menu.getName());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
 	}
 
 	public Menu findByPrimaryKey(int menuid) {
@@ -58,12 +50,13 @@ public class MenuDaoJDBC implements MenuDAO {
 			statement.setInt(1, menuid);
 			double prezzo = 0.0;
 			ResultSet result = statement.executeQuery();
-			while(result.next()) {
-		        menu = new Menu();
-		        menu.setId(result.getInt("MenuID"));
-		        menu.setName(result.getString("Name"));
-		        Prodotto prodotto = DBManager.getInstance().getProdottoDAO().findByPrimaryKey(result.getInt("ProductID"));
-		        menu.addProdotto(prodotto);
+			menu = new Menu();
+			while (result.next()) {
+				menu.setId(result.getInt("MenuID"));
+				menu.setName(result.getString("Name"));
+				Prodotto prodotto = DBManager.getInstance().getProdottoDAO()
+						.findByPrimaryKey(result.getInt("ProductID"));
+				menu.addProdotto(prodotto);
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
@@ -84,15 +77,13 @@ public class MenuDaoJDBC implements MenuDAO {
 			connection = this.dataSource.getConnection();
 			Menu menu;
 			PreparedStatement statement;
-			String query = "select \"MenuID\" as id\n" + 
-							"from \n" + 
-							"	public.\"Menu\" GROUP BY \"MenuID\" ";
+			String query = "select \"MenuID\" as id\n" + "from \n" + "	public.\"Menu\" GROUP BY \"MenuID\" ";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-		        int id = result.getInt("id");
-		        menu = findByPrimaryKey(id);
-		        menues.add(menu);
+				int id = result.getInt("id");
+				menu = findByPrimaryKey(id);
+				menues.add(menu);
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
@@ -107,47 +98,41 @@ public class MenuDaoJDBC implements MenuDAO {
 	}
 
 	public void update(Menu menu) {
-		// Connection connection = null;
-		// try {
-		// connection = this.dataSource.getConnection();
-		// String update =
-		// "UPDATE public.\"Order\" SET public.\"Order\".\"Status\" = ? WHERE
-		// public.\"Order\".\"UserID\" = ? AND public.\"Order\".\"MenuID\" = ? ";
-		// PreparedStatement statement = connection.prepareStatement(update);
-		// statement.setString(1, menu.getStatus());
-		// statement.setString(2, menu.getUser().getId());
-		// statement.setString(2, menu.getMenu().getId());
-		// statement.executeUpdate();
-		// } catch (SQLException e) {
-		// throw new RuntimeException(e.getMessage());
-		// } finally {
-		// try {
-		// connection.close();
-		// } catch (SQLException e) {
-		// throw new RuntimeException(e.getMessage());
-		// }
-		// }
+		Connection connection = null;
+		try {
+			connection = this.dataSource.getConnection();
+			String update = "UPDATE public.\"Menu\" SET public.\"Menu\".\"Descrizione\" = ? WHERE public.\"Menu\".\"MenuID\" = ? ";
+			PreparedStatement statement = connection.prepareStatement(update);
+			statement.setString(1, menu.getDescrizione());
+			statement.setInt(2, menu.getId());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
 	}
 
 	public void delete(Menu menu) {
-		// Connection connection = null;
-		// try {
-		// connection = this.dataSource.getConnection();
-		// String delete =
-		// "DELETE FROM public.\"Order\" WHERE public.\"Order\".\"UserID\" = ? AND
-		// public.\"Order\".\"MenuID\" = ? ";
-		// PreparedStatement statement = connection.prepareStatement(delete);
-		// statement.setString(2, menu.getUser().getId());
-		// statement.setString(2, menu.getMenu().getId());
-		// statement.executeUpdate();
-		// } catch (SQLException e) {
-		// throw new RuntimeException(e.getMessage());
-		// } finally {
-		// try {
-		// connection.close();
-		// } catch (SQLException e) {
-		// throw new RuntimeException(e.getMessage());
-		// }
-		// }
+		Connection connection = null;
+		try {
+			connection = this.dataSource.getConnection();
+			String delete = "DELETE FROM public.\"Menu\" WHERE public.\"Menu\".\"MenuID\" = ?";
+			PreparedStatement statement = connection.prepareStatement(delete);
+			statement.setInt(1, menu.getId());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
 	}
 }

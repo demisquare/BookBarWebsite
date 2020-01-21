@@ -24,3 +24,7 @@
 .deleteIcon{
 	cursor: pointer;
 }
+
+span.prodtitle {
+    font-weight: 800;
+}

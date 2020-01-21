@@ -58,8 +58,8 @@ public class MenuDaoJDBC implements MenuDAO {
 			statement.setInt(1, menuid);
 			double prezzo = 0.0;
 			ResultSet result = statement.executeQuery();
+			menu = new Menu();
 			while(result.next()) {
-		        menu = new Menu();
 		        menu.setId(result.getInt("MenuID"));
 		        menu.setName(result.getString("Name"));
 		        Prodotto prodotto = DBManager.getInstance().getProdottoDAO().findByPrimaryKey(result.getInt("ProductID"));
@@ -84,14 +84,15 @@ public class MenuDaoJDBC implements MenuDAO {
 			connection = this.dataSource.getConnection();
 			Menu menu;
 			PreparedStatement statement;
-			String query = "select \"MenuID\" as id\n" + 
-							"from \n" + 
-							"	public.\"Menu\" GROUP BY \"MenuID\" ";
+			String query = "SELECT \"MenuID\" AS id FROM public.\"Menu\" GROUP BY \"MenuID\" ";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
+			
 			while (result.next()) {
 		        int id = result.getInt("id");
+		        System.out.println(id);	
 		        menu = findByPrimaryKey(id);
+		        System.out.println(menu.getName());
 		        menues.add(menu);
 			}
 		} catch (SQLException e) {

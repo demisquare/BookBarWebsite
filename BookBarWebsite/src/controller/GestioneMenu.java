@@ -34,8 +34,8 @@ public final class GestioneMenu extends HttpServlet {
 				dbm.addProd(prodotto);	
 			} else if (operation.equals("del")) {
 				id = Integer.parseInt(req.getParameter("id"));
-				System.out.println("del product");
 				prodotto = dbm.findProdByPrimaryKey(id);
+				System.out.println("del product" + prodotto.getNome());
 				dbm.deleteProd(prodotto);
 			}
 		} else if (subject.equalsIgnoreCase("menu")) {

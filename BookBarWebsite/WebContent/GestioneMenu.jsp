@@ -91,38 +91,19 @@ let getProdList = () => {
 				let singleRowHTML = '<tr class="userRow"><th scope="row">' + k + '</th><td>' + data[row].id + '</td>';
  					singleRowHTML += '<td>' + data[row].nome + '</td><td>' + data[row].descrizione + '</td><td>' + data[row].prezzo + '</td>';
 
- 				singleRowHTML += '</td><td><i class="fas fa-trash-alt deleteIcon"></td></tr>';
+ 				singleRowHTML += '</td><td class="productDeleteBtn" data-id="'+data[row].id+'"><i class="fas fa-trash-alt deleteIcon"></td></tr>';
 				html += singleRowHTML;
 				k++;
 			}
 			
 			document.querySelector(".product-table").innerHTML = html;
-			
-			let consegnaBtn = document.querySelectorAll(".consegnaBtn");
-			for (let i = 0; i < consegnaBtn.length; i++) {
-				consegnaBtn[i].addEventListener("click", function() {
-					consegnaHandler(consegnaBtn[i].dataset.id);
+
+			let productDeleteBtn = document.querySelectorAll(".productDeleteBtn");
+			for (let i = 0; i < productDeleteBtn.length; i++) {
+				productDeleteBtn[i].addEventListener("click", function() {
+					delProdHandler(productDeleteBtn[i].dataset.id);
 				});
 			}
-			
-			let deleteBtn = document.querySelectorAll(".deleteBtn");
-			for (let i = 0; i < deleteBtn.length; i++) {
-				deleteBtn[i].addEventListener("click", function() {
-					deleteHandler(deleteBtn[i].dataset.id);
-				});
-			}
-			
-			
-			let inLavorazioneBtn = document.querySelectorAll(".inLavorazioneBtn");
-			for (let i = 0; i < inLavorazioneBtn.length; i++) {
-				inLavorazioneBtn[i].addEventListener("click", function() {
-					inLavorazioneHandler(inLavorazioneBtn[i].dataset.id);
-				});
-			}		
-			
-
-
-		
 		});
 }
 let getMenuList = () => {
@@ -147,42 +128,29 @@ let getMenuList = () => {
 				let singleRowHTML = '<tr class="userRow"><th scope="row">' + k + '</th><td>' + data[row].id + '</td><td>' + data[row].name + '</td><td>';
 				
  				for (let p in data[row].prodotti) {
- 					console.log(data[row].prodotti[p])
  					singleRowHTML += '<span class="prodtitle">' + data[row].prodotti[p].nome + '</span> ' + data[row].prodotti[p].descrizione + '<br/>';
  				}
 
- 				singleRowHTML += '</td><td><i class="fas fa-plus deleteIcon"></td><td><i class="fas fa-trash-alt deleteIcon"></td></tr>';
+ 				singleRowHTML += '</td><td class="menuPlusBtn" data-id="'+data[row].id+'"><i class="fas fa-plus deleteIcon"></td><td class="menuDeleteBtn" data-id="'+data[row].id+'"><i class="fas fa-trash-alt deleteIcon"></td></tr>';
 				html += singleRowHTML;
 				k++;
 			}
 			
 			document.querySelector(".menu-table").innerHTML = html;
 			
-			let consegnaBtn = document.querySelectorAll(".consegnaBtn");
-			for (let i = 0; i < consegnaBtn.length; i++) {
-				consegnaBtn[i].addEventListener("click", function() {
-					consegnaHandler(consegnaBtn[i].dataset.id);
+			let menuPlusBtn = document.querySelectorAll(".menuPlusBtn");
+			for (let i = 0; i < menuPlusBtn.length; i++) {
+				menuPlusBtn[i].addEventListener("click", function() {
+					addProdToMenuHandler(menuPlusBtn[i].dataset.id);
 				});
 			}
 			
-			let deleteBtn = document.querySelectorAll(".deleteBtn");
-			for (let i = 0; i < deleteBtn.length; i++) {
-				deleteBtn[i].addEventListener("click", function() {
-					deleteHandler(deleteBtn[i].dataset.id);
+			let menuDeleteBtn = document.querySelectorAll(".menuDeleteBtn");
+			for (let i = 0; i < menuDeleteBtn.length; i++) {
+				menuDeleteBtn[i].addEventListener("click", function() {
+					delMenuHandler(menuDeleteBtn[i].dataset.id);
 				});
 			}
-			
-			
-			let inLavorazioneBtn = document.querySelectorAll(".inLavorazioneBtn");
-			for (let i = 0; i < inLavorazioneBtn.length; i++) {
-				inLavorazioneBtn[i].addEventListener("click", function() {
-					inLavorazioneHandler(inLavorazioneBtn[i].dataset.id);
-				});
-			}		
-			
-
-
-		
 		});
 }
 	let settings = {
@@ -197,49 +165,45 @@ let getMenuList = () => {
 			  "data": {}
 			}
 	
-	let inLavorazioneHandler = (id) => {
+	let addProdToMenuHandler = (id) => {
 		let data = {}
-		data.operation="lavorazione";
+		data.operation="add";
+		data.subject="menu";
 		data.id=id
-
-		settings.data = data;
-		
-		console.log("Lavorazione ", settings.data);
+		settings.data = data;		
+		console.log("menuPlusBtn ", settings.data);
 		$.ajax(settings).done(function (response) {
 			  console.log(response);
-			  getUserList();
+				getMenuList();
 			});
 	}
 	
-	let consegnaHandler = (id) => {
-		let data = {}
-		data.operation="consegna";
-		data.id=id
-
-		settings.data = data;
-		
-		console.log("Consegna ", settings.data);
-		$.ajax(settings).done(function (response) {
-			  console.log(response);
-			  getUserList();
-			});
-	}
-
-	let deleteHandler = (id) => {
+	let delMenuHandler = (id) => {
 		let data = {}
 		data.operation="del";
+		data.subject="menu";
 		data.id=id
-
 		settings.data = data;
-		
-		console.log("Delete ", settings.data);
+		console.log("menuDeleteBtn ", settings.data);
 		$.ajax(settings).done(function (response) {
 			  console.log(response);
-			  getUserList();
+				getMenuList();
 			});
 	}
 	
-
+	
+	let delProdHandler = (id) => {
+		let data = {}
+		data.operation="del";
+		data.subject="product";
+		data.id=id
+		settings.data = data;
+		console.log("delete product  ", settings.data);
+		$.ajax(settings).done(function (response) {
+			  console.log(response);
+				getProdList();
+			});
+	}
 	$(document).ready(function() {
 		getMenuList();
 		getProdList();

@@ -120,25 +120,22 @@ public class ProdottoDaoJDBC implements ProdottoDAO {
 	}
 
 	public void delete(Prodotto prodotto) {
-		// Connection connection = null;
-		// try {
-		// connection = this.dataSource.getConnection();
-		// String delete =
-		// "DELETE FROM public.\"Order\" WHERE public.\"Order\".\"UserID\" = ? AND
-		// public.\"Order\".\"MenuID\" = ? ";
-		// PreparedStatement statement = connection.prepareStatement(delete);
-		// statement.setString(2, prodotto.getUser().getId());
-		// statement.setString(2, prodotto.getMenu().getId());
-		// statement.executeUpdate();
-		// } catch (SQLException e) {
-		// throw new RuntimeException(e.getMessage());
-		// } finally {
-		// try {
-		// connection.close();
-		// } catch (SQLException e) {
-		// throw new RuntimeException(e.getMessage());
-		// }
-		// }
+		Connection connection = null;
+		try {
+			connection = this.dataSource.getConnection();
+			String delete = "DELETE FROM public.\"Product\" WHERE public.\"Product\".\"ProductID\" = ?";
+			PreparedStatement statement = connection.prepareStatement(delete);
+			statement.setInt(1, prodotto.getId());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
 	}
 
 }

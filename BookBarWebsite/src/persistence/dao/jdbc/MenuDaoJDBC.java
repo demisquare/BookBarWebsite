@@ -54,7 +54,8 @@ public class MenuDaoJDBC implements MenuDAO {
 			menu.setId(menuid);
 			while (result.next()) {
 				System.out.println("prodotti??????????????????" + menuid);
-				
+				menu.setName(result.getString("Name"));
+
 				Prodotto prodotto = DBManager.getInstance().getProdottoDAO()
 						.findByPrimaryKey(result.getInt("ProductID"));
 				menu.addProdotto(prodotto);

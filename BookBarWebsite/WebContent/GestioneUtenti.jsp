@@ -80,14 +80,14 @@
 </c:choose>
 
 <!-- footer bar -->
-<%@include file="component/footer.jsp"%>
+<%@ include file="component/footer.jsp"%>
 
 <script>
 	let getUserList = () => {
 		$.ajax({
 			  "async": true,
 			  "crossDomain": true,
-			  "url": "http://localhost:8080/BookBarWebsite/api/utenti",
+			  "url": "http://localhost:8080/BookBarWebsite/api/user",
 			  "method": "GET",
 			  "headers": {
 			    "Content-Type": "application/json",
@@ -162,6 +162,7 @@
 	
 	$(document).ready(function() {
 		getUserList();
+		console.log("ciao")
   });
 </script>
 

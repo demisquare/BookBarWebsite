@@ -22,30 +22,23 @@ public class OrdineDaoJDBC implements OrdineDAO {
 	}
 
 	public void save(Ordine ordine) {
-		// Connection connection = null;
-		// try {
-		// connection = this.dataSource.getConnection();
-		// String insert =
-		// "insert into ordine(matricola, nome, cognome,"
-		// + " datanascita, scuola, corsodilaurea) values (?,?,?,?,?,?)";
-		// PreparedStatement statement = connection.prepareStatement(insert);
-		// statement.setString(1, ordine.getMatricola());
-		// statement.setString(2, ordine.getNome());
-		// statement.setString(3, ordine.getCognome());
-		// statement.setString(4, ordine.getDataNascita());
-		// statement.setLong(5, ordine.getScuolaDiDiploma().getId());
-		// // statement.setLong(5,
-		// // ordine.get.getScuolaDiDiploma().getId());
-		// statement.executeUpdate();
-		// } catch (SQLException e) {
-		// throw new RuntimeException(e.getMessage());
-		// } finally {
-		// try {
-		// connection.close();
-		// } catch (SQLException e) {
-		// throw new RuntimeException(e.getMessage());
-		// }
-		// }
+		Connection connection = null;
+		try {
+			connection = this.dataSource.getConnection();
+			String insert = "INSERT INTO public.\"Order\"(\"UserID\", \"MenuID\", \"Status\") VALUES (?, ?, 'Nuovo')";
+			PreparedStatement statement = connection.prepareStatement(insert);
+			statement.setInt(1, ordine.getUser().getId());
+			statement.setInt(2, ordine.getMenu().getId());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
 	}
 
 	public Ordine findByPrimaryKey(int orderid) {
@@ -87,7 +80,7 @@ public class OrdineDaoJDBC implements OrdineDAO {
 			connection = this.dataSource.getConnection();
 			Ordine ordine;
 			PreparedStatement statement;
-			String query = "SELECT * FROM public.\"Order\"";
+			String query = "SELECT * FROM public.\"Order\" ORDER BY \"OrderID\" DESC";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
@@ -96,7 +89,7 @@ public class OrdineDaoJDBC implements OrdineDAO {
 				ordine.setData(result.getTimestamp("Data").toString());
 				ordine.setUser(DBManager.getInstance().getUtenteDAO().findByPrimaryKey(result.getInt("UserID")));
 				ordine.setId(result.getInt("OrderID"));
-				
+
 				Menu menu = DBManager.getInstance().getMenuDAO().findByPrimaryKey(result.getInt("MenuID"));
 				ordine.setMenu(menu);
 //        System.out.println("Menu ID " + ordine.getMenu().getName());
@@ -121,8 +114,9 @@ public class OrdineDaoJDBC implements OrdineDAO {
 			String update = "UPDATE public.\"Order\" SET \"Status\" = ? WHERE \"OrderID\" = ? ";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, ordine.getStato());
-			statement.setInt(2, ordine.getUser().getId());
+			statement.setInt(2, ordine.getId());
 			statement.executeUpdate();
+			System.out.println("Stamp");
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
 		} finally {

@@ -14,6 +14,7 @@
 			<th scope="col">Nome</th>
 			<th scope="col">Prodotti</th>
 			<th scope="col"></th>
+			<th scope="col"></th>
 		</tr>
 	</thead>
 	<tbody class="menu-table">
@@ -46,7 +47,6 @@
 			<th scope="col">Nome</th>
 			<th scope="col">Descrizione</th>
 			<th scope="col">Prezzo</th>
-			<th scope="col">Disponibile</th>
 			<th scope="col"></th>
 		</tr>
 	</thead>
@@ -69,8 +69,63 @@
 <!-- footer bar -->
 <%@include file="component/footer.jsp"%>
 <script>
+let getProdList = () => {
+	$.ajax({
+		  "async": true,
+		  "crossDomain": true,
+		  "url": "http://localhost:8080/BookBarWebsite/api/prodotti",
+		  "method": "GET",
+		  "headers": {
+		    "Content-Type": "application/json",
+		    "Accept": "*/*",
+		  },
+		  "data": {}
+		}).done(function (response) {
+			let data = JSON.parse(JSON.stringify(response));
+			// {"id":1,"role":"admin","firstName":"Paola","email":"paola@unical.it","password":"paola","lastName":"Ciaone"}
+			
+			console.log("PROD",data);
+			let html = '';
+			let k = 0;
+			for (let row in data) {
+				let singleRowHTML = '<tr class="userRow"><th scope="row">' + k + '</th><td>' + data[row].id + '</td>';
+ 					singleRowHTML += '<td>' + data[row].nome + '</td><td>' + data[row].descrizione + '</td><td>' + data[row].prezzo + '</td>';
 
-let getUserList = () => {
+ 				singleRowHTML += '</td><td><i class="fas fa-trash-alt deleteIcon"></td></tr>';
+				html += singleRowHTML;
+				k++;
+			}
+			
+			document.querySelector(".product-table").innerHTML = html;
+			
+			let consegnaBtn = document.querySelectorAll(".consegnaBtn");
+			for (let i = 0; i < consegnaBtn.length; i++) {
+				consegnaBtn[i].addEventListener("click", function() {
+					consegnaHandler(consegnaBtn[i].dataset.id);
+				});
+			}
+			
+			let deleteBtn = document.querySelectorAll(".deleteBtn");
+			for (let i = 0; i < deleteBtn.length; i++) {
+				deleteBtn[i].addEventListener("click", function() {
+					deleteHandler(deleteBtn[i].dataset.id);
+				});
+			}
+			
+			
+			let inLavorazioneBtn = document.querySelectorAll(".inLavorazioneBtn");
+			for (let i = 0; i < inLavorazioneBtn.length; i++) {
+				inLavorazioneBtn[i].addEventListener("click", function() {
+					inLavorazioneHandler(inLavorazioneBtn[i].dataset.id);
+				});
+			}		
+			
+
+
+		
+		});
+}
+let getMenuList = () => {
 	$.ajax({
 		  "async": true,
 		  "crossDomain": true,
@@ -96,7 +151,7 @@ let getUserList = () => {
  					singleRowHTML += '<span class="prodtitle">' + data[row].prodotti[p].nome + '</span> ' + data[row].prodotti[p].descrizione + '<br/>';
  				}
 
- 				singleRowHTML += '</td></tr>';
+ 				singleRowHTML += '</td><td><i class="fas fa-plus deleteIcon"></td><td><i class="fas fa-trash-alt deleteIcon"></td></tr>';
 				html += singleRowHTML;
 				k++;
 			}
@@ -133,7 +188,7 @@ let getUserList = () => {
 	let settings = {
 			  "async": true,
 			  "crossDomain": true,
-			  "url": "http://localhost:8080/BookBarWebsite/gestione_ordini",
+			  "url": "http://localhost:8080/BookBarWebsite/gestione_menu",
 			  "method": "POST",
 			  "headers": {
 			    "Content-Type": "application/x-www-form-urlencoded",
@@ -186,8 +241,8 @@ let getUserList = () => {
 	
 
 	$(document).ready(function() {
-		getUserList();
-		console.log("ciao")
+		getMenuList();
+		getProdList();
   });
 </script>
 

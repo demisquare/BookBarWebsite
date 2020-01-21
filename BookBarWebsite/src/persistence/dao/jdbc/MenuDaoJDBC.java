@@ -79,7 +79,7 @@ public class MenuDaoJDBC implements MenuDAO {
 			connection = this.dataSource.getConnection();
 			Menu menu;
 			PreparedStatement statement;
-			String query = "select * from \n" + "	public.\"Menu\" GROUP BY \"MenuID\" ";
+			String query = "select * from \n" + "	public.\"Menu\" GROUP BY \"MenuID\" ";	
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {

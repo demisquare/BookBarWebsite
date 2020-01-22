@@ -16,6 +16,12 @@ public class ChartDaoJDBC implements ChartDAO {
 	public ChartDaoJDBC(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
+	
+	 /* SELECT public."Product"."Name", public."Product"."Description", public."Chart"."Quantity" FROM public."Chart"
+	   JOIN public."User" on public."User"."UserID" = public."Chart"."UserID"
+       JOIN public."Product" on public."Product"."ProductID" = public."Chart"."ProductID"
+       WHERE public."User"."UserID"=6
+	 */
 
 	@Override
 	public void save(Chart chart) {

@@ -14,6 +14,11 @@
 				in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 				Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui
 				officia deserunt mollit anim id est laborum.</p>
+				
+				<form class="form-signin" method="POST" action="">
+				<button class="btn btn-lg btn-primary btn-block btn-signin"
+					type="submit">Compra menu 1</button>
+			</form>
 		</div>
 	</div>
 </div>

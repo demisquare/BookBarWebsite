@@ -80,9 +80,9 @@
 								<div class="dropdown-menu"
 									aria-labelledby="navbarDropdownMenuLink">
 									<a class="dropdown-item"
-										href="${pageContext.request.contextPath}/#">Chart(0)</a>
+										href="${pageContext.request.contextPath}/chart">Chart()</a>
 									<a class="dropdown-item"
-										href="${pageContext.request.contextPath}/#">User Settings</a>
+										href="${pageContext.request.contextPath}/user">User Settings</a>
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/login?logout=true">Logout</a>
 								</div></li>

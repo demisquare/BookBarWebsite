@@ -98,11 +98,15 @@ public class DBManager {
 		return getOrdineDAO().findAll();
 	}
 
+	
+	public List<Ordine> getAllUserOrders(Utente utente) {
+		return getOrdineDAO().findAllByUser(utente);
+	}
 	public void addOrder(Ordine ordine) {
 		getOrdineDAO().save(ordine);
 	}
 
-	public void deleteOrder(Ordine ordine) {
+	public void deleteOrder(Ordine ordine) {	
 		getOrdineDAO().delete(ordine);
 	}
 

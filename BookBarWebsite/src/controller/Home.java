@@ -42,10 +42,15 @@ public class Home extends HttpServlet {
 		
 		HashMap<Integer, Integer> carrello = (HashMap<Integer, Integer>) session.getAttribute("carrello");
 		
-		if(carrello.get(1)!=null)
+		if(carrello.get(1)!=null) {
 			carrello.put(1, carrello.get(1)+1);
-		else
+			int numEleCarrello = (int) session.getAttribute("numEleCarrello");
+			numEleCarrello += 1;
+			session.setAttribute("numEleCarrello", numEleCarrello);
+			
+		} else {
 			carrello.put(1, 1);
+		}
 
 		System.out.println("il carrello contiene: ");
 		

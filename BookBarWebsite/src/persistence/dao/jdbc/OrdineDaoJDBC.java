@@ -107,6 +107,44 @@ public class OrdineDaoJDBC implements OrdineDAO {
 		return ordini;
 	}
 
+	public List<Ordine> findAllByUser(Utente utente) {
+		Connection connection = null;
+		List<Ordine> ordini = new LinkedList<>();
+		try {
+			connection = this.dataSource.getConnection();
+			Ordine ordine;
+			PreparedStatement statement;
+			String query = "SELECT * FROM public.\"Order\" WHERE public.\"Order\".\"UserID\" = ? ORDER BY \"OrderID\" DESC";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, utente.getId());
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				ordine = new Ordine();
+				ordine.setStato(result.getString("Status"));
+				ordine.setData(result.getTimestamp("Data").toString());
+				ordine.setUser(DBManager.getInstance().getUtenteDAO().findByPrimaryKey(result.getInt("UserID")));
+				ordine.setId(result.getInt("OrderID"));
+
+				Menu menu = DBManager.getInstance().getMenuDAO().findByPrimaryKey(result.getInt("MenuID"));
+				ordine.setMenu(menu);
+//        System.out.println("Menu ID " + ordine.getMenu().getName());
+				ordini.add(ordine);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		return ordini;
+	}
+	
+	
+	
+	
 	public void update(Ordine ordine) {
 		Connection connection = null;
 		try {

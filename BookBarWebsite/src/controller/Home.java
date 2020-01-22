@@ -16,20 +16,20 @@ public class Home extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 
-		// Codice di prova, da eliminare
-		Utente utonto = new Utente();
-		utonto.setFirstName("test");
-		utonto.setRole("admin");
+//		// Codice di prova, da eliminare
+//		Utente utonto = new Utente();
+//		utonto.setFirstName("test");
+//		utonto.setRole("admin");
 		// utonto.setRole("user");
-		HttpSession session = req.getSession();
-		session.setAttribute("utente", utonto);
+//		HttpSession session = req.getSession(false);
+//		session.setAttribute("utente", utonto);
 		// ====================================
 		// System.out.println("gfjldkgjfkldgj");
 		
 		//HttpSession session = req.getSession();
-		if(session.getAttribute("carrello") == null ) session.setAttribute("carrello", new HashMap<Integer, Integer>());
+
+		RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 		rd.forward(req, resp);
 	}
 

@@ -60,7 +60,15 @@
   	<url-pattern>/user</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+  	<servlet-name>controller.Chart</servlet-name>
+  	<servlet-class>controller.Chart</servlet-class>
+  </servlet>
   
+  <servlet-mapping>
+  	<servlet-name>controller.Chart</servlet-name>
+  	<url-pattern>/chart</url-pattern>
+  </servlet-mapping>
   
   
   <!-- GestioneMenu -->

@@ -42,15 +42,15 @@ public class Home extends HttpServlet {
 		int id = Integer.parseInt(req.getParameter("id"));
 		if (session.getAttribute("utente") != null) {
 			if(carrello.get(id)!=null) {
-				int numEleCarrello = (int) session.getAttribute("numEleCarrello");
-				numEleCarrello += 1;
-				carrello.put(id, numEleCarrello);
-				session.setAttribute("numEleCarrello", numEleCarrello);
-				System.out.println("il carrello contiene " + numEleCarrello + " elementi");
+				carrello.put(id, carrello.get(id)+1);
 			} else {
 				carrello.put(id, 1);
 			}
 			
+			int numEleCarrello = (int) session.getAttribute("numEleCarrello");
+			numEleCarrello += 1;
+			session.setAttribute("numEleCarrello", numEleCarrello);
+			System.out.println("il carrello contiene " + numEleCarrello + " elementi");
 			
 			carrello.entrySet().forEach(entry->{
 				System.out.println("menu: " + entry.getKey() + " - qta: " + entry.getValue());  

@@ -16,6 +16,7 @@ public final class ordini extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		DBManager dbm = persistence.DBManager.getInstance();
 		List<Ordine> ordini = new LinkedList<>();
+		
 		ordini = dbm.getAllOrders();
 
 		String json = new Gson().toJson(ordini);

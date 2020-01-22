@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,6 +29,9 @@ public class MenuDaoJDBC implements MenuDAO {
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, menu.getName());
 			statement.executeUpdate();
+			
+			// manca la parte di aggiunta dei prodotti al menu
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
 		} finally {
@@ -103,14 +107,50 @@ public class MenuDaoJDBC implements MenuDAO {
 	}
 
 	public void update(Menu menu) {
+		updateProds(menu);			
+//		Connection connection = null;
+//		try {
+//			connection = this.dataSource.getConnection();
+//			String update = "UPDATE public.\"Menu\" SET public.\"Menu\".\"Descrizione\" = ? WHERE public.\"Menu\".\"MenuID\" = ? ";
+//			PreparedStatement statement = connection.prepareStatement(update);
+//			statement.setString(1, menu.getDescrizione());
+//			statement.setInt(2, menu.getId());
+//			statement.executeUpdate();
+//		} catch (SQLException e) {
+//			throw new RuntimeException(e.getMessage());
+//		} finally {
+//			try {
+//				connection.close();
+//			} catch (SQLException e) {
+//				throw new RuntimeException(e.getMessage());
+//			}
+//		}
+	}
+
+	private void updateProds(Menu menu) {
 		Connection connection = null;
 		try {
 			connection = this.dataSource.getConnection();
-			String update = "UPDATE public.\"Menu\" SET public.\"Menu\".\"Descrizione\" = ? WHERE public.\"Menu\".\"MenuID\" = ? ";
-			PreparedStatement statement = connection.prepareStatement(update);
-			statement.setString(1, menu.getDescrizione());
-			statement.setInt(2, menu.getId());
-			statement.executeUpdate();
+			Menu menuVecchio = findByPrimaryKey(menu.getId());
+			
+			String delete = "DELETE FROM public.\"MenuProduct\" WHERE public.\"MenuProduct\".\"MenuID\" = ? AND public.\"MenuProduct\".\"ProductID\" = ?";
+			for (int i = 0; i < menuVecchio.getProdotti().size(); i++) {
+				PreparedStatement statementDelete = connection.prepareStatement(delete);
+				statementDelete.setInt(1, menu.getId());
+				statementDelete.setInt(2, menuVecchio.getProdotti().get(i).getId());
+				System.out.println("Prodotto eliminato " + i + ": " + menuVecchio.getProdotti().get(i).getNome());
+				statementDelete.executeUpdate();
+			}
+			
+			String update = "INSERT INTO public.\"MenuProduct\" (\"MenuID\", \"ProductID\", \"Price\") VALUES (?, ?, ?)";
+			for (int i = 0; i < menu.getProdotti().size(); i++) {
+				PreparedStatement statementUpdate = connection.prepareStatement(update);
+				statementUpdate.setInt(1, menu.getId());
+				statementUpdate.setInt(2, menu.getProdotti().get(i).getId());
+				statementUpdate.setInt(3, (int) menu.getProdotti().get(i).getPrezzo());
+				System.out.println("Prodotto aggiunto " + i + ": " + menu.getProdotti().get(i).getNome());
+				statementUpdate.executeUpdate();
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
 		} finally {
@@ -121,7 +161,7 @@ public class MenuDaoJDBC implements MenuDAO {
 			}
 		}
 	}
-
+	
 	public void delete(Menu menu) {
 		Connection connection = null;
 		try {

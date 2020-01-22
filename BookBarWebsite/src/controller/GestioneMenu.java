@@ -1,14 +1,11 @@
 package controller;
 
 import java.io.IOException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import model.Menu;
-import model.Ordine;
 import model.Prodotto;
 import persistence.DBManager;
 
@@ -19,6 +16,7 @@ public final class GestioneMenu extends HttpServlet {
 		req.setAttribute("menu", "Esempio");
 		req.getRequestDispatcher("GestioneMenu.jsp").forward(req, res);
 	}
+
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		DBManager dbm = persistence.DBManager.getInstance();
@@ -56,6 +54,26 @@ public final class GestioneMenu extends HttpServlet {
 				} else {
 					System.out.println("Menu non vuoto");
 				}
+			} else if (operation.equals("update")) {
+				id = Integer.parseInt(req.getParameter("id"));
+				menu = dbm.findMenuByPrimaryKey(id);
+				
+		        String x = req.getParameterValues("newProds")[0];				
+				
+		        menu.svouta();
+		        
+		        System.out.println("stringa " + x);
+		        if (x.length() != 2) {
+		        	String newProd = x.substring(1, x.length()-1);
+		        	String[] tokens=newProd.split(",");
+		        	
+		        	for (int i = 0; i < tokens.length; i++) {
+		        		Prodotto p = dbm.getProdottoDAO().findByPrimaryKey(Integer.parseInt(tokens[i]));
+		        		System.out.println("Mehhhhh  " + tokens[i]);
+		        		menu.addProdotto(p);
+		        	}
+		        }
+				dbm.updateMenu(menu);				
 			}
 		}
 		res.setStatus(200);

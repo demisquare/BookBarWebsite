@@ -45,6 +45,10 @@ public class Menu {
 		return name;
 	}
 
+	public void svouta() {
+		prodotti.clear();
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}

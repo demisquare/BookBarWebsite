@@ -126,6 +126,10 @@ public class DBManager {
 	public void addMenu(Menu menu) {
 		getMenuDAO().save(menu);
 	}
+	
+	public void updateMenu(Menu menu) {
+		getMenuDAO().update(menu);
+	}
 
 	public void deleteMenu(Menu menu) {
 		getMenuDAO().delete(menu);
@@ -134,6 +138,7 @@ public class DBManager {
 	public MenuDAO getMenuDAO() {
 		return new MenuDaoJDBC(dataSource);
 	}
+	
 
 	// Prodotti //
 	public Prodotto findProdByPrimaryKey(int prodid) {

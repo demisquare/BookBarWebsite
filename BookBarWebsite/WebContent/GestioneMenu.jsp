@@ -62,7 +62,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Chiudi</button>
-					<button type="submit" class="btn btn-primary addProd2MenuBtn">Salva</button>
+					<button type="submit" class="btn btn-primary addProd2MenuBtn" data-dismiss="modal">Salva</button>
 				</div>
 			</div>
 
@@ -282,12 +282,13 @@ let getMenuList = () => {
 			  "data": {}
 			}
 	
+	let data = {}
+	
 	let addProdToMenuHandler = (id) => {
-		let data = {}
-		data.operation="add";
+		data.operation="addP";
 		data.subject="menu";
 		data.id= +id
-		settings.data = data;		
+		settings.data = data;	
 		console.log("add prod to menu ", id," ", menu);
 		if (menu !== 'null') {
 			console.log('id ', data.id)
@@ -298,14 +299,8 @@ let getMenuList = () => {
 		}
 		
 		let salva = document.querySelector(".addProd2MenuBtn");
-		salva.addEventListener('click', addProd2MenuHandler(data));
+		salva.addEventListener('click', addProd2MenuHandler);
 
-		console.log(data.prod);
-		
-		$.ajax(settings).done(function (response) {
-			  console.log(response);
-				getMenuList();
-			});
 	}
 	
 	let delMenuHandler = (id) => {
@@ -351,23 +346,34 @@ let addMenuHandler = () => {
 	
 	}
 	
-let addProd2MenuHandler = (data) => {
+let addProd2MenuHandler = () => {
 	
-	for (let p in data.prod) {
+/* 	for (let p in data.prod) {
 		console.log(+data.prod[p].id)
 		let id = +data.prod[p].id;
 		$('#mySelect2').val(id);
 		$('#mySelect2').trigger('change');
-	}
+	} */
 	let prodSelezionati = $('#mySelect2').select2('data');
 	let newProd = [];
 	_.map(prodSelezionati, (el) => {
 		console.log("Prodotto selezionato ", +el.id);
 		newProd.push(+el.id);
 	})
-	console.log("ciao ", data.id, newProd)
-
+	console.log("Salvo... ", data.id, newProd)
+	console.log(data.prod);
+	data.newProds = JSON.stringify(newProd);
+	data.operation = "update";
+	data.subject = "menu";
+	settings.data = data;
+	
+	$.ajax(settings).done(function (response) {
+		  console.log(response);
+			getMenuList();
+		});
+	data = {}
 }
+
 let addProdHandler = () => {
 	$("#addProdModal").modal('hide')
 	console.log("add prod"); 

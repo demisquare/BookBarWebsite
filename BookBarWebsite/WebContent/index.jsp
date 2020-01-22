@@ -5,7 +5,7 @@
 <div class="container" id="main">
 
 	<div class="row">
-		<div class="col-sm-4">
+		<div class="col-sm-12">
 			<h2>Welcome to Book Bar!</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed do
 				eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad
@@ -14,10 +14,13 @@
 				in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 				Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui
 				officia deserunt mollit anim id est laborum.</p>
-				
-				<button class="btn btn-lg btn-primary btn-block btn-signin compra1">Compra menu 1</button>
 		</div>
 	</div>
+	<div class="row displayMenu">
+		<div class="col-sm-4">
+		</div>
+	</div>
+
 </div>
 
 <!-- footer bar -->
@@ -25,6 +28,7 @@
 
 
 <script>
+
 let settings = {
 		  "async": true,
 		  "crossDomain": true,
@@ -37,14 +41,60 @@ let settings = {
 		  "data": {}
 		}
 
-let handleCompra1 = () => {
+let handleCompra = (id) => {
+	console.log(id)
+	settings.data['id'] = id;
 	$.ajax(settings).done(function (response) {
-		console.log("Compra menu 1");
+		console.log("Compra menu " + settings.data['id']);
 });
 }
-let compra1 = document.querySelector(".compra1");
-compra1.addEventListener('click', handleCompra1);
 
+let getMenuList = () => {
+	$.ajax({
+		  "async": true,
+		  "crossDomain": true,
+		  "url": "http://localhost:8080/BookBarWebsite/api/menu",
+		  "method": "GET",
+		  "headers": {
+		    "Content-Type": "application/json",
+		    "Accept": "*/*",
+		  },
+		  "data": {}
+		}).done(function (response) {
+			let data = JSON.parse(JSON.stringify(response));
+			menu = data;
+			console.log("Data",data);
+			let html = '';
+			let k = 0;
+			for (let row in data) {
+				let singleRowHTML = '<div class="col-sm-4">';
+				singleRowHTML += '<button class="btn btn-lg btn-primary btn-block btn-signin compra" data-id="'+ data[row].id + '">Compra ' + data[row].name + ' </button>';
+				singleRowHTML += '</div>';
+				
+/*  				for (let p in data[row].prodotti) {
+ 					singleRowHTML += '<span class="prodtitle">' + data[row].prodotti[p].nome + '</span> ' + data[row].prodotti[p].descrizione + '<br/>';
+ 				} */
+/* 
+ 				singleRowHTML += '</td><td class="menuPlusBtn" data-toggle="modal" data-target="#addProd2MenuModal" data-id="'+data[row].id+'"><i class="fas fa-plus deleteIcon"></td><td class="menuDeleteBtn" data-id="'+data[row].id+'"><i class="fas fa-trash-alt deleteIcon"></td></tr>'; */
+				html += singleRowHTML;
+			}
+
+			document.querySelector(".displayMenu").innerHTML = html;
+			
+			let addmenubtn = document.querySelectorAll(".compra");
+			for (let i = 0; i < addmenubtn.length; i++) {
+				addmenubtn[i].addEventListener("click", function() {
+					handleCompra(addmenubtn[i].dataset.id);
+				});
+			}
+			
+		});
+}
+
+$(document).ready(function() {
+	getMenuList();
+	console.log("ciao")
+});
 
 </script>
 

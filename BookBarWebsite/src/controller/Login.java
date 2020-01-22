@@ -41,6 +41,7 @@ public class Login extends HttpServlet {
 			HttpSession sessione = req.getSession(true);
 			sessione.setAttribute("utente", utente);
 			sessione.setAttribute("name", utente.getFirstName());
+
 			sessione.setAttribute("numEleCarrello", 0);
 			sessione.setAttribute("carrello", new HashMap<Integer, Integer>());
 			resp.sendRedirect(".");

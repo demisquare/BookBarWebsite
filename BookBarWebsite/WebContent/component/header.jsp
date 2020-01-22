@@ -79,8 +79,13 @@
 								aria-haspopup="true" aria-expanded="false"> Hi, ${utente.getFirstName()} </a>
 								<div class="dropdown-menu"
 									aria-labelledby="navbarDropdownMenuLink">
+										<%
+										int elementiCarrello = 0;
+										elementiCarrello = (int) session.getAttribute("numEleCarrello");										
+										%>
+									
 									<a class="dropdown-item"
-										href="${pageContext.request.contextPath}/chart">Chart()</a>
+										href="${pageContext.request.contextPath}/chart">Chart( <%= elementiCarrello %> ${elementiCarrello})</a>
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/user">User Settings</a>
 									<a class="dropdown-item"

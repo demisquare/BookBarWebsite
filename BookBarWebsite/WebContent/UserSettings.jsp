@@ -1,17 +1,25 @@
 
 <!-- header bar -->
 <%@include file="component/header.jsp"%>
+<%
+String username = "";
+int eleCarrello = 0;
+if (session.getAttribute("name") != null) {
+	username = (String) session.getAttribute("name");
+	eleCarrello = (int) session.getAttribute("numEleCarrello");
+}
+%>
 
 <div class="container" id="main">
 	<div class="row">
-		<h1>User settings - ${session.getAttribute("name")} - impostazioni</h1>
+		<h1>Ciao <%= username %>! - impostazioni</h1>
 		
 	</div>
 	<div class="row">
-		<h1>User settings - ${session.getAttribute("utente")} - carrello</h1>
+		<h1><%= username %> - carrello (<%= eleCarrello %>) </h1>
 	</div>
 	<div class="row">
-		<h1>User settings - ${session.getAttribute("utente")} - ordini passati </h1>
+		<h1><%= username %> - ordini passati </h1>
 		<table class="table table-hover">
 	<thead>
 		<tr>

@@ -29,7 +29,7 @@ public class Home extends HttpServlet {
 		// System.out.println("gfjldkgjfkldgj");
 		
 		//HttpSession session = req.getSession();
-		session.setAttribute("carrello", new HashMap<Integer, Integer>());
+		if(session.getAttribute("carrello") == null ) session.setAttribute("carrello", new HashMap<Integer, Integer>());
 		rd.forward(req, resp);
 	}
 
@@ -54,6 +54,6 @@ public class Home extends HttpServlet {
 		 });
 		
 		
-		session.setAttribute("carrello", carrello);
+//		session.setAttribute("carrello", carrello);
 	}
 }

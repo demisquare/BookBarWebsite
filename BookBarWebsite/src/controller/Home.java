@@ -33,11 +33,13 @@ public class Home extends HttpServlet {
 		rd.forward(req, resp);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("compra menu 1...");
 		
-		HttpSession session = req.getSession();
+		HttpSession session = req.getSession(false);
+		
 		HashMap<Integer, Integer> carrello = (HashMap<Integer, Integer>) session.getAttribute("carrello");
 		
 		if(carrello.get(1)!=null)
@@ -51,6 +53,7 @@ public class Home extends HttpServlet {
 		    System.out.println("menu: " + entry.getKey() + " - qta: " + entry.getValue());  
 		 });
 		
-		doGet(req, resp);
+		
+		session.setAttribute("carrello", carrello);
 	}
 }

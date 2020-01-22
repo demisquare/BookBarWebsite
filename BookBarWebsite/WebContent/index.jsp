@@ -15,13 +15,38 @@
 				Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui
 				officia deserunt mollit anim id est laborum.</p>
 				
-				<form class="form-signin" method="POST" action="">
-				<button class="btn btn-lg btn-primary btn-block btn-signin"
-					type="submit">Compra menu 1</button>
-			</form>
+				<button class="btn btn-lg btn-primary btn-block btn-signin compra1">Compra menu 1</button>
 		</div>
 	</div>
 </div>
 
 <!-- footer bar -->
 <%@include file="component/footer.jsp"%>
+
+
+<script>
+let settings = {
+		  "async": true,
+		  "crossDomain": true,
+		  "url": "http://localhost:8080/BookBarWebsite/",
+		  "method": "POST",
+		  "headers": {
+		    "Content-Type": "application/x-www-form-urlencoded",
+		    "Accept": "*/*",
+		  },
+		  "data": {}
+		}
+
+let handleCompra1 = () => {
+	$.ajax(settings).done(function (response) {
+		console.log("Compra menu 1");
+});
+}
+let compra1 = document.querySelector(".compra1");
+compra1.addEventListener('click', handleCompra1);
+
+
+</script>
+
+</body>
+</html>

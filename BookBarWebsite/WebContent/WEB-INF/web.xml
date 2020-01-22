@@ -57,7 +57,7 @@
   
   <servlet-mapping>
   	<servlet-name>controller.AreaClienti</servlet-name>
-  	<url-pattern>/area_clienti</url-pattern>
+  	<url-pattern>/user</url-pattern>
   </servlet-mapping>
   
   

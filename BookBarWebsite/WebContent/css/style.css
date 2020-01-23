@@ -10,6 +10,21 @@
 	height: 60px;
 	width: 100%;
 	color: whitesmoke;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    color: darkgrey;
+	font-size: smaller;
+}
+.redText {
+	color: red;
+}
+.greenText {
+	color: green;
+}
+.f-text {
+	text-align: center;
+	font-size: 0.7rem;
 }
 
 .logo {
@@ -27,4 +42,9 @@
 
 span.prodtitle {
     font-weight: 800;
+}
+
+.row{
+	margin-bottom: 1.3rem;
+		margin-top: 1.3rem;
 }

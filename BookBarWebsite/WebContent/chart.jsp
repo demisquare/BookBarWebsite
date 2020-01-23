@@ -13,7 +13,7 @@ if (session.getAttribute("name") != null) {
 <div class="container" id="main">
 
 	<div class="row">
-		<h1><%= username %> - carrello (<%= eleCarrello %>) </h1>
+		<h1><%= username %> - Totale Elementi: <span id="totale-elementi"> </span> </h1>
 	</div>
 	<div class="row">
 		<table class="table table-hover">
@@ -101,14 +101,20 @@ let getItemList = () => {
 			let html = '';
 			let k = 0;
 			let totale = 0;
+			let numEle = 0;
 			for (let row in data) {
-				let dingleRowPrice = parseFloat(data[row].menu.prezzo) * parseInt(data[row].qta);
+				
+				let qtaRow = parseInt(data[row].qta);
+				let dingleRowPrice = parseFloat(data[row].menu.prezzo) * qtaRow;
+				
 				console.log(dingleRowPrice, parseFloat(data[row].menu.prezzo), parseInt(data[row].qta))
 				let singleRowHTML = '<tr class="userRow"><th scope="row">' + data[row].menu.id + '</th><td>' + data[row].menu.name + '</td><td>' + data[row].qta + '</td><td>' + dingleRowPrice + '&euro;</td><td class="rowDeleteBtn" data-id="'+data[row].menu.id+'"><i class="fas fa-trash-alt deleteIcon"></i></td>';
 				singleRowHTML += '</tr>';
 				html += singleRowHTML;
-			
+				
 				totale += dingleRowPrice;
+				numEle += qtaRow;
+				console.log(numEle)
 			}
 
 
@@ -153,6 +159,8 @@ let getItemList = () => {
 			paypal.Button.render(settingPaypal, '#paypal-button');
 
 			//html += '<tr class="userRow"><th scope="row"></th><td></td><td></td><td>Totale</td><td>' + totale + '</td></tr>';
+			document.querySelector('#totale-elementi').innerHTML = numEle;
+			document.querySelector("#t-e").innerHTML = numEle;
 			document.querySelector("#prezzo").innerHTML = totale;
 			document.querySelector(".item-table").innerHTML = html;
 			

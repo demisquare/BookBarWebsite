@@ -144,13 +144,14 @@ public class UtenteDaoJDBC implements UtenteDAO {
 		Connection connection = null;
 		try {
 			connection = this.dataSource.getConnection();
-			String update = "UPDATE public.\"User\" SET Email = ?, FirstName = ?, LastName = ?, UserType = ? , WHERE UserID = ?";
+			String update = "UPDATE public.\"User\" SET \"Email\" = ?, \"FirstName\" = ?, \"LastName\" = ?, \"UserType\" = ?, \"Password\" = ? WHERE \"UserID\" = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, utente.getEmail());
 			statement.setString(2, utente.getFirstName());
 			statement.setString(3, utente.getLastName());
 			statement.setString(4, utente.getRole());
-			statement.setInt(5, utente.getId());
+			statement.setString(5, utente.getPassword());
+			statement.setInt(6, utente.getId());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());

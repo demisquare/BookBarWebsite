@@ -42,7 +42,9 @@ let settings = {
 		}
 
 let handleCompra = (id) => {
-	console.log(id)
+	let num= parseInt(document.querySelector("#t-e").innerHTML);
+	console.log(num)
+	document.querySelector("#t-e").innerHTML = (num+1);
 	settings.data['id'] = id;
 	$.ajax(settings).done(function (response) {
 		console.log("Compra menu " + settings.data['id']);
@@ -67,6 +69,7 @@ let getMenuList = () => {
 			let html = '';
 			let k = 0;
 			for (let row in data) {
+				
 				let singleRowHTML = '<div class="col-sm-4">';
 				singleRowHTML += '<button class="btn btn-lg btn-primary btn-block btn-signin compra" data-id="'+ data[row].id + '">Compra ' + data[row].name + ' </button>';
 				singleRowHTML += '</div>';
@@ -80,7 +83,6 @@ let getMenuList = () => {
 			}
 
 			document.querySelector(".displayMenu").innerHTML = html;
-			
 			let addmenubtn = document.querySelectorAll(".compra");
 			for (let i = 0; i < addmenubtn.length; i++) {
 				addmenubtn[i].addEventListener("click", function() {

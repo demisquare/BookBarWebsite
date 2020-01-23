@@ -60,7 +60,7 @@
 					<li class="nav-item active"><a class="nav-link"
 						href="${pageContext.request.contextPath}/">Home <span
 							class="sr-only">(current)</span></a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Menu</a></li>
+<!-- 					<li class="nav-item"><a class="nav-link" href="#">Menu</a></li> -->
 				</ul>
 
 				<ul class="navbar-nav">
@@ -85,7 +85,7 @@
 										%>
 									
 									<a class="dropdown-item"
-										href="${pageContext.request.contextPath}/chart">Chart( <%= elementiCarrello %> ${elementiCarrello})</a>
+										href="${pageContext.request.contextPath}/chart">Chart(<span id="t-e">0</span>)</a>
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/user">User Settings</a>
 									<a class="dropdown-item"

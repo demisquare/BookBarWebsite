@@ -32,7 +32,19 @@ if (session.getAttribute("name") != null) {
 </table>
 
 	</div>
-	<div id="paypal-button"></div>
+	<div class="row justify-content-end">
+		<div class="col-2">
+			 
+			<p>
+				Totale: 
+				<span id="prezzo"></span>
+				&euro;
+			</p>
+		</div>
+    <div class="col-2">
+			<div id="paypal-button"></div>
+		</div>
+  </div>
 </div>
 
   <script
@@ -49,6 +61,28 @@ if (session.getAttribute("name") != null) {
 <script>
 
 
+	let settings = {
+		"async": true,
+		"crossDomain": true,
+		"url": "http://localhost:8080/BookBarWebsite/api/chart",
+		"method": "POST",
+		"headers": {
+			"Content-Type": "application/x-www-form-urlencoded",
+			"Accept": "*/*",
+		},
+		"data": {}
+	}
+
+	let delUserHandler = (id) => {
+		let data = {}
+		data.operation="del";
+		data.id=id;
+		settings.data = data;
+		console.log("Vuoi eliminare il menu " + settings.data.id);
+		$.ajax(settings).done(function (response) {
+			getItemList();
+		});
+	}
 	
 
 let getItemList = () => {
@@ -70,12 +104,15 @@ let getItemList = () => {
 			for (let row in data) {
 				let dingleRowPrice = parseFloat(data[row].menu.prezzo) * parseInt(data[row].qta);
 				console.log(dingleRowPrice, parseFloat(data[row].menu.prezzo), parseInt(data[row].qta))
-				let singleRowHTML = '<tr class="userRow"><th scope="row">' + data[row].menu.id + '</th><td>' + data[row].menu.name + '</td><td>' + data[row].qta + '</td><td>' + dingleRowPrice + '</td><td>' + data[row] + '</td>';
+				let singleRowHTML = '<tr class="userRow"><th scope="row">' + data[row].menu.id + '</th><td>' + data[row].menu.name + '</td><td>' + data[row].qta + '</td><td>' + dingleRowPrice + '&euro;</td><td class="rowDeleteBtn" data-id="'+data[row].menu.id+'"><i class="fas fa-trash-alt deleteIcon"></i></td>';
 				singleRowHTML += '</tr>';
 				html += singleRowHTML;
 			
 				totale += dingleRowPrice;
 			}
+
+
+
 
 			let settingPaypal = {
 				// Configure environment
@@ -112,11 +149,24 @@ let getItemList = () => {
 					});
 				}
 			}
-
+			document.querySelector("#paypal-button").innerHTML = '';
 			paypal.Button.render(settingPaypal, '#paypal-button');
 
-			html += '<tr class="userRow"><th scope="row"></th><td></td><td></td><td>Totale</td><td>' + totale + '</td></tr>';
+			//html += '<tr class="userRow"><th scope="row"></th><td></td><td></td><td>Totale</td><td>' + totale + '</td></tr>';
+			document.querySelector("#prezzo").innerHTML = totale;
 			document.querySelector(".item-table").innerHTML = html;
+			
+			
+			let rowDeleteBtn = document.querySelectorAll(".rowDeleteBtn");
+			for (let i = 0; i < rowDeleteBtn.length; i++) {
+			console.log("Ciaooooooo")
+				rowDeleteBtn[i].addEventListener("click", function() {
+					console.log("rowDeleteBtn ", rowDeleteBtn[i].dataset.id);
+					delUserHandler(rowDeleteBtn[i].dataset.id);
+				});
+			}
+			
+			
 		});
 }
 

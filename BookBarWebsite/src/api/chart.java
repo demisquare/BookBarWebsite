@@ -56,6 +56,29 @@ public final class chart extends HttpServlet {
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-		
+		HttpSession session = req.getSession(false);
+		HashMap<Integer, Integer> carrello = (HashMap<Integer, Integer>) session.getAttribute("carrello");
+		System.out.println("                                                                                   elimina menu " + req.getParameter("id"));
+		int id = Integer.parseInt(req.getParameter("id"));
+		if (session.getAttribute("utente") != null) {
+			if(carrello.get(id)!=null) {
+				carrello.put(id, carrello.get(id)-1);
+				if (carrello.get(id) == 0)  {
+					carrello.remove(id);
+				}
+			} 
+			
+			int numEleCarrello = (int) session.getAttribute("numEleCarrello");
+			numEleCarrello -= 1;
+			System.out.println("il carrello contiene " + numEleCarrello + " elementi");
+			
+			carrello.entrySet().forEach(entry->{
+				System.out.println("menu: " + entry.getKey() + " - qta: " + entry.getValue());  
+			});
+			
+			session.setAttribute("numEleCarrello", numEleCarrello);
+			session.setAttribute("carrello", carrello);
+			System.out.println("il carrello contiene " + numEleCarrello + " elementi");
+		}
 	}
 }

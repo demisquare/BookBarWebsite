@@ -31,7 +31,16 @@
   	<url-pattern>/login</url-pattern>
   </servlet-mapping>
   
+    <!-- Login -->
+  <servlet>
+  	<servlet-name>controller.ok</servlet-name>
+  	<servlet-class>controller.ok</servlet-class>
+  </servlet>
   
+  <servlet-mapping>
+  	<servlet-name>controller.ok</servlet-name>
+  	<url-pattern>/ok</url-pattern>
+  </servlet-mapping>
   
   
   
@@ -145,6 +154,16 @@
 	<servlet-mapping>
 		<servlet-name>api.menu</servlet-name>
 		<url-pattern>/api/menu</url-pattern>
+	</servlet-mapping>
+	
+	
+			<servlet>
+		<servlet-name>api.chart</servlet-name>
+		<servlet-class>api.chart</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>api.chart</servlet-name>
+		<url-pattern>/api/chart</url-pattern>
 	</servlet-mapping>
 
 </web-app>

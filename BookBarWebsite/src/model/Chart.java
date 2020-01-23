@@ -1,37 +1,25 @@
 package model;
 
 public class Chart {
-	private Utente utente;
-	private Prodotto prodotto;
-	private int quantita;
-
-	public Chart(Utente utente, Prodotto prodotto) {
-		this.utente = utente;
-		this.prodotto = prodotto;
-		this.quantita = 0;
+	private Menu menu;
+	private int qta;
+	
+	public Chart() {}
+	public Chart(Menu m, int q) {
+		this.menu = m;
+		this.qta = q;
 	}
-
-	public Utente getUtente() {
-		return utente;
+	
+	public Menu getMenu() {
+		return menu;
 	}
-
-	public void setUtente(Utente utente) {
-		this.utente = utente;
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
-
-	public Prodotto getProdotto() {
-		return prodotto;
+	public int getQta() {
+		return qta;
 	}
-
-	public void setProdotto(Prodotto prodotto) {
-		this.prodotto = prodotto;
-	}
-
-	public int getQuantita() {
-		return quantita;
-	}
-
-	public void setQuantita(int quantita) {
-		this.quantita = quantita;
+	public void setQta(int qta) {
+		this.qta = qta;
 	}
 }

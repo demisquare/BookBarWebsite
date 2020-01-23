@@ -13,13 +13,9 @@ if (session.getAttribute("name") != null) {
 <div class="container" id="main">
 	<div class="row">
 		<h1>Ciao <%= username %>! - impostazioni</h1>
-		
 	</div>
-	<div class="row">
-		<h1><%= username %> - carrello (<%= eleCarrello %>) </h1>
-	</div>
-	<div class="row">
-		<h1><%= username %> - ordini passati </h1>
+		<div class="row">
+		<h1><%= username %> - ordini </h1>
 		<table class="table table-hover">
 	<thead>
 		<tr>

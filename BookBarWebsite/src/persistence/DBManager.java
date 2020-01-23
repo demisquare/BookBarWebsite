@@ -19,20 +19,9 @@ import persistence.dao.jdbc.UtenteDaoJDBC;
 public class DBManager {
 	static Dotenv dotenv = Dotenv.configure().load();
 
-	// DB Locale
-	 private final static String url = "jdbc:postgresql://localhost/bb";
-	 private final static String user = "bb";
-	 private final static String password = "bb";
-
-	// DB Online
-	// private final static String url =
-	// "jdbc:postgresql://rajje.db.elephantsql.com/scsobnvn";
-	// private final static String user = "scsobnvn";
-	// private final static String password = "eyWmoMiquMNtJlm4yW75U0_004k0Tcq9";
-
-//	private final static String url = dotenv.get("DB_URL");
-//	private final static String user = dotenv.get("DB_USER");
-//	private final static String password = dotenv.get("DB_PASS");
+	private final static String url = dotenv.get("DB_URL_LOCAL");
+	private final static String user = dotenv.get("DB_USER_LOCAL");
+	private final static String password = dotenv.get("DB_PASS_LOCAL");
 
 	private static DataSource dataSource;
 

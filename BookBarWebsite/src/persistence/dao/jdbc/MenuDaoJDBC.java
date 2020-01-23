@@ -25,9 +25,10 @@ public class MenuDaoJDBC implements MenuDAO {
 		Connection connection = null;
 		try {
 			connection = this.dataSource.getConnection();
-			String insert = "INSERT INTO \"public\".\"Menu\" (\"Name\") VALUES (?);";
+			String insert = "INSERT INTO \"public\".\"Menu\" (\"Name\", \"Prezzo\") VALUES (?, ?);";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, menu.getName());
+			statement.setDouble(2, menu.getPrezzo());
 			statement.executeUpdate();
 			
 			// manca la parte di aggiunta dei prodotti al menu
@@ -52,7 +53,6 @@ public class MenuDaoJDBC implements MenuDAO {
 			String query = "SELECT * FROM public.\"MenuProduct\" as mp JOIN public.\"Menu\" as m ON mp.\"MenuID\" = m.\"MenuID\" AND m.\"MenuID\" = ?";
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, menuid);
-			double prezzo = 0.0;
 			ResultSet result = statement.executeQuery();
 			menu = new Menu();
 			menu.setId(menuid);
@@ -91,6 +91,7 @@ public class MenuDaoJDBC implements MenuDAO {
 				int id = result.getInt("MenuID");
 				menu = findByPrimaryKey(id);
 				menu.setName(result.getString("Name"));
+				menu.setPrezzo(result.getDouble("Prezzo"));
 				System.out.println(menu.getId() + " " + menu.getName());
 				menues.add(menu);
 			}

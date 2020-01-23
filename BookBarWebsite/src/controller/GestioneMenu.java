@@ -41,7 +41,7 @@ public final class GestioneMenu extends HttpServlet {
 			if (operation.equals("add")) {
 				System.out.println("add menu");
 				menu.setName(req.getParameter("name"));
-				menu.setDescrizione(req.getParameter("desc"));
+				menu.setPrezzo(Double.parseDouble(req.getParameter("prezzo")));
 				dbm.addMenu(menu);	
 			} else if (operation.equals("del")) {
 				id = Integer.parseInt(req.getParameter("id"));

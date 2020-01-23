@@ -24,11 +24,10 @@
 					<label for="menuname">Nome</label> <input type="text"
 						class="form-control" id="menuname" aria-describedby="menunameHelp">
 				</div>
-<!-- 				<div class="form-group">
-					<label for="menudesc">Descrizione</label> <input type="text"
-						class="form-control" id="menudesc">
-				</div>
- -->				
+				<div class="form-group">
+					<label for="menuprezzo">Prezzo</label> <input type="text"
+						class="form-control" id="menuprezzo">
+				</div>			
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Chiudi</button>
@@ -96,10 +95,6 @@
 					<label for="proddesc">Descrizione</label> <input type="text"
 						class="form-control" id="proddesc">
 				</div>
-				<div class="form-group">
-					<label for="prodprezzo">Prezzo</label> <input type="text"
-						class="form-control" id="prodprezzo">
-				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Chiudi</button>
@@ -118,6 +113,7 @@
 			<th scope="col">ID</th>
 			<th scope="col">Nome</th>
 			<th scope="col">Prodotti</th>
+			<th scope="col">Prezzo</th>
 			<th scope="col"></th>
 			<th scope="col"></th>
 		</tr>
@@ -151,7 +147,7 @@
 			<th scope="col">ID</th>
 			<th scope="col">Nome</th>
 			<th scope="col">Descrizione</th>
-			<th scope="col">Prezzo</th>
+
 			<th scope="col"></th>
 		</tr>
 	</thead>
@@ -194,7 +190,7 @@ let getProdList = () => {
 			let k = 0;
 			for (let row in data) {
 				let singleRowHTML = '<tr class="userRow"><th scope="row">' + k + '</th><td>' + data[row].id + '</td>';
- 					singleRowHTML += '<td>' + data[row].nome + '</td><td>' + data[row].descrizione + '</td><td>' + data[row].prezzo + '</td>';
+ 					singleRowHTML += '<td>' + data[row].nome + '</td><td>' + data[row].descrizione + '</td>';
 
  				singleRowHTML += '</td><td class="productDeleteBtn" data-id="'+data[row].id+'"><i class="fas fa-trash-alt deleteIcon"></td></tr>';
 				html += singleRowHTML;
@@ -248,7 +244,7 @@ let getMenuList = () => {
  					singleRowHTML += '<span class="prodtitle">' + data[row].prodotti[p].nome + '</span> ' + data[row].prodotti[p].descrizione + '<br/>';
  				}
 
- 				singleRowHTML += '</td><td class="menuPlusBtn" data-toggle="modal" data-target="#addProd2MenuModal" data-id="'+data[row].id+'"><i class="fas fa-plus deleteIcon"></td><td class="menuDeleteBtn" data-id="'+data[row].id+'"><i class="fas fa-trash-alt deleteIcon"></td></tr>';
+ 				singleRowHTML += '</td> <td>' + data[row].prezzo + '</td> <td class="menuPlusBtn" data-toggle="modal" data-target="#addProd2MenuModal" data-id="'+data[row].id+'"><i class="fas fa-plus deleteIcon"></td><td class="menuDeleteBtn" data-id="'+data[row].id+'"><i class="fas fa-trash-alt deleteIcon"></td></tr>';
 				html += singleRowHTML;
 				k++;
 			}
@@ -337,6 +333,8 @@ let addMenuHandler = () => {
 	data.operation="add";
 	data.subject="menu";
 	data.name=document.querySelector("#menuname").value;
+	data.prezzo=document.querySelector("#menuprezzo").value;
+	console.log("Prezzo ", data.prezzo)
 	settings.data = data;
 	console.log("add menu  ", settings.data);
 	$.ajax(settings).done(function (response) {

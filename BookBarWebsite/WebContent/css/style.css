@@ -48,3 +48,34 @@ span.prodtitle {
 	margin-bottom: 1.3rem;
 		margin-top: 1.3rem;
 }
+
+
+
+
+
+.ok-page{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+
+
+.ok-txt{
+	width: 100%;
+}
+
+
+.ok-img{
+	
+	width: 100%;
+    text-align: center;
+    padding: 100px;
+}
+
+
+.ok-ico{
+	font-size: 22em;
+	color: darkgreen;
+	
+}

@@ -11,7 +11,7 @@ if (session.getAttribute("name") != null) {
 %>
 <div class="container" id="main">
 
-		<h1>Ciao <%= username %>! - impostazioni</h1>
+		<h1>Ciao <span id="usernameTitle"></span>!</h1>
 		
 		<div class="row">
 			<div class="col-6"><input type="text" name="firstname" id="inputFirstname" class="form-control" placeholder="Nome" autofocus></div>
@@ -41,9 +41,14 @@ if (session.getAttribute("name") != null) {
 	<button type="button" class="btn btn-success salvaBtn">Salva</button>
 		</div>
 
-
+</div>
 		<div class="row">
-		<h1><%= username %> - ordini </h1>
+		<div class="col-6">
+		<h1>Storico ordini </h1>
+		</div>
+	</div>
+	<div class="row">
+	<div class="col-12">
 		<table class="table table-hover">
 	<thead>
 		<tr>
@@ -53,15 +58,13 @@ if (session.getAttribute("name") != null) {
 			<th scope="col">Deadline</th>
 			<th scope="col">Username</th>
 			<th scope="col">Menu</th>
-			<th scope="col"></th>
-			<th scope="col"></th>
-			<th scope="col"></th>
 		</tr>
 	</thead>
 	<tbody class="order-table">
 
 	</tbody>
 </table>
+</div>
 	</div>
 </div>
 
@@ -88,7 +91,7 @@ let inputOldPassword = document.querySelector('#passwordattuale');
 let inputNewPassword = document.querySelector('#passwordnuova');
 let inputConfirmPassword = document.querySelector('#passwordconferma');
 let logArea = document.querySelector('.logarea');
-
+let usernameTitle = document.querySelector('#usernameTitle');
 
 let saveChangeHandler = () => {
 	logArea.innerHTML = '';
@@ -113,13 +116,17 @@ let saveChangeHandler = () => {
 
 		console.log("settings.data", settings.data);
 		$.ajax(settings).done(function (response) {
-		        
+
+			console.log('Response ',response);
 			if(response.err) {
 				logArea.innerHTML = '<p>Errore nel savataggio dei dati</p>';
 				logArea.classList.add('redText');
 			} else {
 				logArea.innerHTML = '<p>Dati Salvati</p>';
 				logArea.classList.add('greenText');
+				inputOldPassword.value = '';
+				
+				getUserInfo();
 			}
 			
 		});
@@ -139,7 +146,7 @@ let getUserInfo = () => {
 				inputFN.value = response.firstName;
 				inputLN.value = response.lastName;
 				inputEmail.value = response.email;
-/* 				inputOldPassword.value = response.password; */
+				usernameTitle.innerHTML = inputFN.value;
 		});
 }
 

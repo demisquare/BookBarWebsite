@@ -37,6 +37,7 @@ public class ok extends HttpServlet {
 			dbm.addOrder(ordine);
 		});
 		sessione.removeAttribute("carrello");
+		sessione.setAttribute("carrello", new HashMap<Integer, Integer>());
 		}
 		RequestDispatcher rd = req.getRequestDispatcher("ok.jsp");
 		rd.forward(req, resp);

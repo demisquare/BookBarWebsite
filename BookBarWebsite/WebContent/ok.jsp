@@ -14,11 +14,7 @@
 <!-- footer bar -->
 <%@include file="component/footer.jsp"%>
 
-<script>
-setTimeout(function() {
-  window.location.href = "http://localhost:8080/BookBarWebsite/user";
-}, 1500);
-</script>
+<script src="js/ok.js"></script>
 </body>
 
 </html>

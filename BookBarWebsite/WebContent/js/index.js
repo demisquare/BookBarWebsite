@@ -53,7 +53,7 @@ let getMenuList = () => {
                             
                             <div class="card-footer">
                             
-                            <a href="#" class="btn btn-primary compra" data-id=${data[row].id}>Book this menu</a>
+                            <button class="btn btn-primary compra" data-id=${data[row].id}>Book this menu</button>
                             <span class="price-card">${data[row].prezzo}&euro;</span>
                             </div>
                         </div>`;

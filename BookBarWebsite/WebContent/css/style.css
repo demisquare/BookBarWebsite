@@ -89,5 +89,13 @@ span.prodtitle {
 }
 
 .card-footer {
-	text-align: center;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.price-card {
+	font-size:1.5rem;
+	font-weigth: 600;
 }

@@ -38,16 +38,7 @@ let getMenuList = () => {
     let html = "";
     let k = 0;
     for (let row in data) {
-      let singleRowHTML = '<div class="col-sm-4">';
-      singleRowHTML +=
-        '<button class="btn btn-lg btn-primary btn-block btn-signin compra" data-id="' +
-        data[row].id +
-        '">Compra ' +
-        data[row].name +
-        " </button>";
-      singleRowHTML += "</div>";
-
-      singleRowHTML = `<div class="card" style="width: 18rem;">
+      let singleRowHTML = `<div class="card" style="width: 18rem;">
                           <img class="card-img-top" src="https://source.unsplash.com/300x20${k}/?coffee,bar" alt="Card image cap">
                           <div class="card-body">
                             <h5 class="card-title">${data[row].name}</h5>
@@ -63,6 +54,7 @@ let getMenuList = () => {
                             <div class="card-footer">
                             
                             <a href="#" class="btn btn-primary compra" data-id=${data[row].id}>Book this menu</a>
+                            <span class="price-card">${data[row].prezzo}&euro;</span>
                             </div>
                         </div>`;
 

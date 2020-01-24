@@ -79,3 +79,14 @@ span.prodtitle {
 	color: darkgreen;
 	
 }
+
+
+
+.card
+{
+	    margin: 10px;
+}
+
+.card-footer {
+	text-align: center;
+}

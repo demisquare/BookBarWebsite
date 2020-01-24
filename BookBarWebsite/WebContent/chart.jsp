@@ -33,6 +33,9 @@ if (session.getAttribute("name") != null) {
 
 	</div>
 	<div class="row justify-content-end">
+    <div class="col-3">
+			<div id="paypal-button"></div>
+		</div>
 		<div class="col-2">
 			 
 			<p>
@@ -40,9 +43,6 @@ if (session.getAttribute("name") != null) {
 				<span id="prezzo"></span>
 				&euro;
 			</p>
-		</div>
-    <div class="col-2">
-			<div id="paypal-button"></div>
 		</div>
   </div>
 </div>
@@ -130,9 +130,11 @@ let getItemList = () => {
 				// Customize button (optional)
 				locale: 'it_IT',
 				style: {
-					size: 'small',
-					color: 'gold',
-					shape: 'pill',
+				    layout:  'vertical',
+				    color: 'gold',
+				    shape:   'rect',
+				    label:   'paypal'
+					
 				},
 				payment: function(data, actions) {
 					return actions.payment.create({

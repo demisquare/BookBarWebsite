@@ -59,8 +59,7 @@
 				id="navbarNavDropdown">
 				<ul class="navbar-nav">
 					<li class="nav-item active"><a class="nav-link"
-						href="${pageContext.request.contextPath}/">Home <span
-							class="sr-only">(current)</span></a></li>
+						href="${pageContext.request.contextPath}/">BookBar</a></li>
 <!-- 					<li class="nav-item"><a class="nav-link" href="#">Menu</a></li> -->
 				</ul>
 
